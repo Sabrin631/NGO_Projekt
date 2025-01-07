@@ -14,7 +14,6 @@ import java.util.HashMap;
  */
 public class AdminMeny extends javax.swing.JFrame {
     private InfDB idb;
-       
     
     /**
      * Creates new form AdminMeny
