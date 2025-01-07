@@ -52,9 +52,9 @@ public class Inloggning extends javax.swing.JFrame {
         lblLösenord.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLösenord.setText("Lösenord");
 
-        txtEpost.setText("maria.g@example.com");
+        txtEpost.setText("michael.j@example.com");
 
-        txtLösenord.setText("password123");
+        txtLösenord.setText("password789");
         txtLösenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLösenordActionPerformed(evt);

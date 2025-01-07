@@ -363,12 +363,10 @@
                       <EmptySpace pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnÄndra" pref="139" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnÅterställ" max="32767" attributes="0"/>
-                              <Component id="btnExit" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnLäggTill" alignment="0" pref="139" max="32767" attributes="0"/>
-                              <Component id="btnTaBort" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnÅterställ" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnExit" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnLäggTill" alignment="0" pref="139" max="32767" attributes="0"/>
+                          <Component id="btnTaBort" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
@@ -422,6 +420,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn&#xc4;ndraActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn&#xc5;terst&#xe4;ll">
               <Properties>
