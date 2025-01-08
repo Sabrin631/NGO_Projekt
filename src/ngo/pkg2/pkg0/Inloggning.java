@@ -52,9 +52,14 @@ public class Inloggning extends javax.swing.JFrame {
         lblLösenord.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLösenord.setText("Lösenord");
 
-        txtEpost.setText("maria.g@example.com");
+        txtEpost.setText("ahmed.khan@example.com");
+        txtEpost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEpostActionPerformed(evt);
+            }
+        });
 
-        txtLösenord.setText("password123");
+        txtLösenord.setText("password789");
         txtLösenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLösenordActionPerformed(evt);
@@ -156,6 +161,10 @@ public class Inloggning extends javax.swing.JFrame {
     private void txtLösenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLösenordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLösenordActionPerformed
+
+    private void txtEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEpostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEpostActionPerformed
 
     /**
      * @param args the command line arguments
