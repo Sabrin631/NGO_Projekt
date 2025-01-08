@@ -53,20 +53,15 @@ public class Inloggning extends javax.swing.JFrame {
         lblLösenord.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLösenord.setText("Lösenord");
 
-<<<<<<< HEAD
         txtEpost.setText("ahmed.khan@example.com");
         txtEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEpostActionPerformed(evt);
             }
         });
-=======
-<<<<<<< Updated upstream
+
         txtEpost.setText("michael.j@example.com");
-=======
         txtEpost.setText("ahmed.khan@example.com");
->>>>>>> Stashed changes
->>>>>>> Sabrin
 
         txtLösenord.setText("password789");
         txtLösenord.addActionListener(new java.awt.event.ActionListener() {

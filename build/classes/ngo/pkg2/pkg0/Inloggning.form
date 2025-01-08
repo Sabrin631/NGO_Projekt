@@ -108,15 +108,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEpost">
       <Properties>
-<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="ahmed.khan@example.com"/>
-=======
-<<<<<<< Updated upstream
         <Property name="text" type="java.lang.String" value="michael.j@example.com"/>
-=======
         <Property name="text" type="java.lang.String" value="ahmed.khan@example.com"/>
->>>>>>> Stashed changes
->>>>>>> Sabrin
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEpostActionPerformed"/>
