@@ -42,6 +42,13 @@ public class Validering extends javax.swing.JFrame {
         }
         return finns;
     }
+    
+    //Denna metod kollar om en Sträng är tom.
+    // 
+    public boolean arTom(String str) {
+    return str == null || str.trim().isEmpty();
+}
+
         
     
 

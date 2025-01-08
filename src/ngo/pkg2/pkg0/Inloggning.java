@@ -13,6 +13,7 @@ import oru.inf.InfException;
  */
 public class Inloggning extends javax.swing.JFrame {
     private InfDB idb;
+    private String inloggadAnvandareID;
 
     /**
      * Creates new form Inloggning
@@ -132,6 +133,7 @@ public class Inloggning extends javax.swing.JFrame {
 
         if (aid != null) {
             // Kontrollera roll och navigera direkt till rätt meny
+            inloggadAnvandareID = aid;
             String sqlAdmin = "SELECT * FROM admin WHERE aid = '" + aid + "'";
             if (idb.fetchSingle(sqlAdmin) != null) {
                 new AdminMeny(idb).setVisible(true);
