@@ -11,13 +11,16 @@ import oru.inf.InfException;
  */
 public class HandläggarMeny extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
+    
 
     /**
      * Creates new form HandläggarMeny
      */
-    public HandläggarMeny(InfDB idb) {
+    public HandläggarMeny(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
+        this.anvandareID = anvandareID;
     }
 
     /**
@@ -196,7 +199,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMinaUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaUppgifterActionPerformed
-        new MinaUppgifter (idb).setVisible(true);
+        new MinaUppgifter (idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMinaUppgifterActionPerformed
 

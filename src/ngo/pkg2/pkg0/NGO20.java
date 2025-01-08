@@ -20,8 +20,9 @@ public class NGO20 {
     public static void main(String[] args) {
         
         try{
+             String anvandareID = "";
             idb = new InfDB("ngo_2024","3306","dbAdmin2024","dbAdmin2024PW");
-            new Inloggning(idb).setVisible(true);
+            new Inloggning(idb,anvandareID).setVisible(true);
             
         }catch(InfException ex){
             System.out.println(ex.getMessage());   
