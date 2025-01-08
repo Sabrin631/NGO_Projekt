@@ -29,42 +29,206 @@ public class HandläggarMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnMinaUppgifter = new javax.swing.JButton();
+        btnMinaProjekt = new javax.swing.JButton();
+        btnAvdelningsProjekt = new javax.swing.JButton();
+        btnSammarbetsPartners = new javax.swing.JButton();
+        btnHållbarhetsmål = new javax.swing.JButton();
+        btnSökHandläggare = new javax.swing.JButton();
+        btnSökProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 51, 0), 9));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 48)); // NOI18N
+        jLabel1.setText("Välkommen");
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel2.setText("Handläggar - Meny");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(289, 289, 289)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addComponent(jLabel2)))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(17, 17, 17))
+        );
+
+        btnMinaUppgifter.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnMinaUppgifter.setText("Mina uppgifter");
+        btnMinaUppgifter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinaUppgifterActionPerformed(evt);
+            }
+        });
+
+        btnMinaProjekt.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnMinaProjekt.setText("Mina projekt");
+        btnMinaProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinaProjektActionPerformed(evt);
+            }
+        });
+
+        btnAvdelningsProjekt.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnAvdelningsProjekt.setText("Avdelnings projekt");
+        btnAvdelningsProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvdelningsProjektActionPerformed(evt);
+            }
+        });
+
+        btnSammarbetsPartners.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnSammarbetsPartners.setText("Sammarbets partners");
+        btnSammarbetsPartners.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSammarbetsPartnersActionPerformed(evt);
+            }
+        });
+
+        btnHållbarhetsmål.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnHållbarhetsmål.setText("Hållbarhetsmål");
+        btnHållbarhetsmål.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHållbarhetsmålActionPerformed(evt);
+            }
+        });
+
+        btnSökHandläggare.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnSökHandläggare.setText("Sök handläggare");
+        btnSökHandläggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSökHandläggareActionPerformed(evt);
+            }
+        });
+
+        btnSökProjekt.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnSökProjekt.setText("Sök projekt");
+        btnSökProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSökProjektActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAvdelningsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMinaProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMinaUppgifter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(75, 75, 75))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnHållbarhetsmål, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSökProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSökHandläggare, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                        .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSammarbetsPartners)
+                        .addGap(65, 65, 65))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMinaUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMinaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnAvdelningsProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSammarbetsPartners, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnHållbarhetsmål, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(btnSökHandläggare, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSökProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(275, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMinaUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaUppgifterActionPerformed
+        new MinaUppgifter (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMinaUppgifterActionPerformed
+
+    private void btnMinaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaProjektActionPerformed
+        new MinaProjekt (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMinaProjektActionPerformed
+
+    private void btnAvdelningsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvdelningsProjektActionPerformed
+        new AvdelningsProjekt (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAvdelningsProjektActionPerformed
+
+    private void btnSammarbetsPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSammarbetsPartnersActionPerformed
+        new SammarbetsPartners (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSammarbetsPartnersActionPerformed
+
+    private void btnHållbarhetsmålActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHållbarhetsmålActionPerformed
+        new Hållbarhetsmål (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHållbarhetsmålActionPerformed
+
+    private void btnSökHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökHandläggareActionPerformed
+        new SökHandläggare (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSökHandläggareActionPerformed
+
+    private void btnSökProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökProjektActionPerformed
+        new SökProjekt (idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSökProjektActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,6 +266,16 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvdelningsProjekt;
+    private javax.swing.JButton btnHållbarhetsmål;
+    private javax.swing.JButton btnMinaProjekt;
+    private javax.swing.JButton btnMinaUppgifter;
+    private javax.swing.JButton btnSammarbetsPartners;
+    private javax.swing.JButton btnSökHandläggare;
+    private javax.swing.JButton btnSökProjekt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
