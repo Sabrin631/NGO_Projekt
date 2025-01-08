@@ -13,13 +13,14 @@ import oru.inf.InfException;
  */
 public class Inloggning extends javax.swing.JFrame {
     private InfDB idb;
-    private String inloggadAnvandareID;
+    private String anvandareID;
 
     /**
      * Creates new form Inloggning
      */
-    public Inloggning(InfDB idb) {
+    public Inloggning(InfDB idb,String anvandareID) {
         this.idb = idb;
+        this.anvandareID = anvandareID;
         initComponents();
         lblFelmeddelande.setVisible(false);
     }
@@ -140,17 +141,19 @@ public class Inloggning extends javax.swing.JFrame {
         String aid = idb.fetchSingle(sqlFraga);
 
         if (aid != null) {
+            // Spara användarens ID i variabeln anvandareID
+            anvandareID = aid;
             // Kontrollera roll och navigera direkt till rätt meny
-            inloggadAnvandareID = aid;
+            anvandareID = aid;
             String sqlAdmin = "SELECT * FROM admin WHERE aid = '" + aid + "'";
             if (idb.fetchSingle(sqlAdmin) != null) {
-                new AdminMeny(idb).setVisible(true);
+                new AdminMeny(idb,anvandareID).setVisible(true);
             } else {
                 String sqlHandlaggare = "SELECT * FROM handlaggare WHERE aid = '" + aid + "'";
                 if (idb.fetchSingle(sqlHandlaggare) != null) {
-                    new HandläggarMeny(idb).setVisible(true);
+                    new HandläggarMeny(idb,anvandareID).setVisible(true);
                 } else {
-                    new ProjektLedarMeny(idb).setVisible(true);
+                    new ProjektLedarMeny(idb,anvandareID).setVisible(true);
                 }
             }
             this.setVisible(false);

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo.pkg2.pkg0;
+import java.util.HashMap;
+import java.util.List;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -58,6 +60,7 @@ public class MinaUppgifter extends javax.swing.JFrame {
         txtEfternamn = new javax.swing.JTextField();
         txtDatum = new javax.swing.JTextField();
         brnÄndraUppgifter = new javax.swing.JButton();
+        btnHämta = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel10.setText("Ändra mina Uppgifter");
@@ -148,6 +151,13 @@ public class MinaUppgifter extends javax.swing.JFrame {
             }
         });
 
+        btnHämta.setText("Hämta mina upgifter");
+        btnHämta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHämtaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -193,7 +203,9 @@ public class MinaUppgifter extends javax.swing.JFrame {
                             .addGap(189, 189, 189)
                             .addComponent(txtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addComponent(brnÄndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(brnÄndraUppgifter, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(btnHämta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,7 +222,9 @@ public class MinaUppgifter extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHämta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtLösenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -286,6 +300,37 @@ public class MinaUppgifter extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_brnÄndraUppgifterActionPerformed
 
+    private void btnHämtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaActionPerformed
+        // TODO add your handling code here:
+        try {
+        // SQL-fråga för att hämta användarens uppgifter baserat på anvandareID
+        String sql = "SELECT * FROM anstalld WHERE aid = '" + anvandareID + "'";
+
+        // Hämta resultatet från databasen
+        List<HashMap<String, String>> result = idb.fetchRows(sql);
+
+        if (result != null && !result.isEmpty()) {
+            // Hämtar användarens uppgifter från resultatet
+            HashMap<String, String> user = result.get(0);
+            
+            // Fyller textfälten med uppgifterna
+            txtaid.setText(user.get("aid"));
+            txtFornamn.setText(user.get("fornamn"));
+            txtEfternamn.setText(user.get("efternamn"));
+            txtAdress.setText(user.get("adress"));
+            txtEpost.setText(user.get("epost"));
+            txtTelefon.setText(user.get("telefon"));
+            txtDatum.setText(user.get("anstallningsdatum"));
+            txtLösenord.setText(user.get("losenord"));
+            txtAvdelning.setText(user.get("avdelning"));
+        } else {
+            JOptionPane.showMessageDialog(this, "Inga uppgifter hittades för den inloggade användaren.");
+        }
+    } catch (InfException ex) {
+        JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av uppgifter: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnHämtaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,6 +368,7 @@ public class MinaUppgifter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnÄndraUppgifter;
+    private javax.swing.JButton btnHämta;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;

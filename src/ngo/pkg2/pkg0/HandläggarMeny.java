@@ -11,13 +11,16 @@ import oru.inf.InfException;
  */
 public class HandläggarMeny extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
+    
 
     /**
      * Creates new form HandläggarMeny
      */
-    public HandläggarMeny(InfDB idb) {
+    public HandläggarMeny(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
+        this.anvandareID = anvandareID;
     }
 
     /**
