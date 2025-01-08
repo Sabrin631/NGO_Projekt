@@ -108,7 +108,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEpost">
       <Properties>
+<<<<<<< Updated upstream
         <Property name="text" type="java.lang.String" value="michael.j@example.com"/>
+=======
+        <Property name="text" type="java.lang.String" value="ahmed.khan@example.com"/>
+>>>>>>> Stashed changes
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtL&#xf6;senord">
