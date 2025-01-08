@@ -67,6 +67,11 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
         btnÄndra.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnÄndra.setForeground(new java.awt.Color(0, 102, 102));
         btnÄndra.setText("Ändra");
+        btnÄndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraActionPerformed(evt);
+            }
+        });
 
         btnLäggTill.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnLäggTill.setForeground(new java.awt.Color(0, 102, 102));
@@ -284,6 +289,57 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
              System.exit(0);
          }
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
+        // TODO add your handling code here:
+        try {
+        // Hämta värden från textfälten
+        String AVDID = txtavdID.getText();
+        String Namn = txtNamn.getText();
+        String Beskrivning = txtBeskrivning.getText();
+        String Adress = txtAdress.getText();
+        String Epost = txtEpost.getText();
+        String Telefon = txtTelefon.getText();
+        String Stad = txtStad.getText();
+        String Chef = txtChef.getText();
+
+        // Kontrollera att alla obligatoriska fält är ifyllda
+        if (AVDID.isEmpty() || Namn.isEmpty() || Beskrivning.isEmpty() || Adress.isEmpty() || 
+            Epost.isEmpty() || Telefon.isEmpty() || Stad.isEmpty() || Chef.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fyll i alla fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Kontrollera om AVDID finns i databasen
+        String Kontroll = "SELECT COUNT(*) FROM avdelning WHERE avdid = '" + AVDID + "'";
+        String result = idb.fetchSingle(Kontroll);
+
+        if (result == null || Integer.parseInt(result) == 0) {
+            JOptionPane.showMessageDialog(this, "Ingen avdelning hittades med angivet AVDID.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Skapa uppdateringsfråga
+        String sql = "UPDATE avdelning SET " +
+                     "namn = '" + Namn + "', " +
+                     "beskrivning = '" + Beskrivning + "', " +
+                     "adress = '" + Adress + "', " +
+                     "epost = '" + Epost + "', " +
+                     "telefon = '" + Telefon + "', " +
+                     "stad = '" + Stad + "', " +
+                     "chef = '" + Chef + "' " +
+                     "WHERE avdid = '" + AVDID + "'";
+
+        // Kör uppdateringsfrågan
+        idb.update(sql);
+
+        JOptionPane.showMessageDialog(this, "Avdelningens information har uppdaterats!");
+
+    } catch (Exception ex) {
+        // Visa felmeddelande om något går fel
+        JOptionPane.showMessageDialog(this, "Fel vid uppdatering av avdelning: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnÄndraActionPerformed
 
     /**
      * @param args the command line arguments

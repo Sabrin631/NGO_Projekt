@@ -473,7 +473,55 @@ public class ÄndraAnställda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
-    
+
+        try {
+        // Hämta värden från textfälten
+        String aid = txtAid.getText();
+        String fornamn = txtFörnamn.getText();
+        String efternamn = txtEfternamn.getText();
+        String adress = txtAdress.getText();
+        String epost = txtEpost.getText();
+        String telefon = txtTelefon.getText();
+        String anstallningsdatum = txtDatum.getText();
+        String losenord = txtLösenord.getText();
+        String avdelning = txtAvdelning.getText();
+
+        // Kontrollera att ID inte är tomt
+        if (aid.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vänligen ange ett giltigt ID för att uppdatera.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Kontrollera om ID:t existerar i databasen
+        String Kontroll = "SELECT COUNT(*) FROM anstalld WHERE aid = '" + aid + "'";
+        String result = idb.fetchSingle(Kontroll);
+
+        if (result == null || Integer.parseInt(result) == 0) {
+            JOptionPane.showMessageDialog(this, "Ingen anställd hittades med angivet ID.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Skapa SQL-fråga för att uppdatera anställds information
+        String updateQuery = "UPDATE anstalld SET "
+                + "Fornamn = '" + fornamn + "', "
+                + "Efternamn = '" + efternamn + "', "
+                + "Adress = '" + adress + "', "
+                + "Epost = '" + epost + "', "
+                + "Telefon = '" + telefon + "', "
+                + "Anstallningsdatum = '" + anstallningsdatum + "', "
+                + "Losenord = '" + losenord + "', "
+                + "Avdelning = '" + avdelning + "' "
+                + "WHERE aid = '" + aid + "'";
+
+        // Kör uppdateringsfrågan
+        idb.update(updateQuery);
+
+        JOptionPane.showMessageDialog(this, "Anställds information har uppdaterats!");
+
+    } catch (Exception ex) {
+        // Visa felmeddelande om något går fel
+        JOptionPane.showMessageDialog(this, "Fel vid uppdatering av anställd: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnÄndraActionPerformed
 
     private void txtEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEfternamnActionPerformed

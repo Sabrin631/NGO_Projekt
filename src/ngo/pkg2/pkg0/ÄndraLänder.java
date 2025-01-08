@@ -147,7 +147,12 @@ public class ÄndraLänder extends javax.swing.JFrame {
 
         btnÄndra.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnÄndra.setForeground(new java.awt.Color(0, 102, 102));
-        btnÄndra.setText("Ändra");
+        btnÄndra.setText("Uppdatera");
+        btnÄndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraActionPerformed(evt);
+            }
+        });
 
         btnLäggTill.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnLäggTill.setForeground(new java.awt.Color(0, 102, 102));
@@ -366,6 +371,57 @@ public class ÄndraLänder extends javax.swing.JFrame {
              System.exit(0);
          }
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
+        // TODO add your handling code here:
+        try {
+    // Hämta värden från textfälten
+    String Lid = txtLid.getText();
+    String Namn = txtNamn.getText();
+    String Språk = txtSprak.getText();
+    String Valuta = txtValuta.getText();
+    String Tidzon = txtTidszon.getText();
+    String PolitiskStruktur = txtPolitiskStruktur.getText();
+    String Ekonomi = txtEkonomi.getText();
+
+    // Kontrollera att alla obligatoriska fält är ifyllda
+    if (Lid.isEmpty() || Namn.isEmpty() || Språk.isEmpty() || Valuta.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Kontrollera om posten med det angivna ID:t finns
+    String checkQuery = "SELECT COUNT(*) FROM land WHERE lid = '" + Lid + "'";
+    String result = idb.fetchSingle(checkQuery);
+
+    if (result == null || Integer.parseInt(result) == 0) {
+        JOptionPane.showMessageDialog(this, "Ingen Land hittades med angivet Lid. Kan inte uppdatera!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Skapa UPDATE SQL-fråga
+    String sql = "UPDATE land SET "
+            + "namn = '" + Namn + "', "
+            + "sprak = '" + Språk + "', "
+            + "valuta = '" + Valuta + "', "
+            + "tidszon = '" + Tidzon + "', "
+            + "politisk_struktur = '" + PolitiskStruktur + "', "
+            + "ekonomi = '" + Ekonomi + "' "
+            + "WHERE lid = '" + Lid + "'";
+
+    // Utför uppdateringen
+    idb.update(sql);
+
+    // Bekräftelsemeddelande
+    JOptionPane.showMessageDialog(this, "Landsinformationen har uppdaterats!");
+
+} catch (Exception ex) {
+    // Felhantering
+    JOptionPane.showMessageDialog(this, "Fel vid uppdatering av Land: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+}
+
+        
+    }//GEN-LAST:event_btnÄndraActionPerformed
 
     /**
      * @param args the command line arguments

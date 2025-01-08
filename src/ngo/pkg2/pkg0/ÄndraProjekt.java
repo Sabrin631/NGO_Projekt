@@ -162,6 +162,11 @@ public class ÄndraProjekt extends javax.swing.JFrame {
 
         btnÄndra.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnÄndra.setText("Ändra");
+        btnÄndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraActionPerformed(evt);
+            }
+        });
 
         btnÅterställ.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnÅterställ.setText("Återställ");
@@ -395,6 +400,61 @@ public class ÄndraProjekt extends javax.swing.JFrame {
         txtProjektChef.setText("");
         txtLand.setText("");
     }//GEN-LAST:event_btnÅterställActionPerformed
+
+    private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
+        // TODO add your handling code here:
+        try {
+    // Hämta värden från textfälten
+    String pid = txtpid.getText();
+    String projektnamn = txtProjektnamn.getText();
+    String beskrivning = txtBeskrivning.getText();
+    String startdatum = txtStartDatum.getText();
+    String slutdatum = txtSlutDatum.getText();
+    String kostnad = txtKostnad.getText();
+    String status = txtStatus.getText();
+    String prioritet = txtPrioritet.getText();
+    String projektChef = txtProjektChef.getText();
+    String land = txtLand.getText();
+
+    // Kontrollera att alla obligatoriska fält är ifyllda
+    if (pid.isEmpty() || projektnamn.isEmpty() || startdatum.isEmpty() || slutdatum.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Kontrollera om projektet med det angivna PID finns
+    String checkQuery = "SELECT COUNT(*) FROM projekt WHERE pid = '" + pid + "'";
+    String result = idb.fetchSingle(checkQuery);
+
+    if (result == null || Integer.parseInt(result) == 0) {
+        JOptionPane.showMessageDialog(this, "Inget projekt hittades med angivet PID. Kan inte uppdatera!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Skapa UPDATE SQL-fråga
+    String sql = "UPDATE projekt SET "
+            + "projektnamn = '" + projektnamn + "', "
+            + "beskrivning = '" + beskrivning + "', "
+            + "startdatum = '" + startdatum + "', "
+            + "slutdatum = '" + slutdatum + "', "
+            + "kostnad = '" + kostnad + "', "
+            + "status = '" + status + "', "
+            + "prioritet = '" + prioritet + "', "
+            + "projektchef = '" + projektChef + "', "
+            + "land = '" + land + "' "
+            + "WHERE pid = '" + pid + "'";
+
+    // Utför uppdateringen
+    idb.update(sql);
+
+    // Bekräftelsemeddelande
+    JOptionPane.showMessageDialog(this, "Projektinformationen har uppdaterats!");
+
+} catch (Exception ex) {
+    // Felhantering
+    JOptionPane.showMessageDialog(this, "Fel vid uppdatering av projekt: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+}
+    }//GEN-LAST:event_btnÄndraActionPerformed
 
     /**
      * @param args the command line arguments

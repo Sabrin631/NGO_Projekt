@@ -164,6 +164,11 @@ public class ÄndraPartners extends javax.swing.JFrame {
 
         btnÄndra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnÄndra.setText("Ändra");
+        btnÄndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraActionPerformed(evt);
+            }
+        });
 
         btnÅterställ.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnÅterställ.setText("Återställ");
@@ -189,11 +194,10 @@ public class ÄndraPartners extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnÄndra, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnÅterställ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLäggTill, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                        .addComponent(btnTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnÅterställ, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLäggTill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(btnTaBort, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -384,6 +388,58 @@ public class ÄndraPartners extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Fel vid borttagning av Partner: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnTaBortActionPerformed
+
+    private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
+        // TODO add your handling code here:
+        try {
+    // Hämta värden från textfälten
+    String pid = txtpid.getText();
+    String namn = txtNamn.getText();
+    String kontaktPerson = txtKontaktPerson.getText();
+    String kontaktEpost = txtKontaktEpost.getText();
+    String telefon = txtTelefon.getText();
+    String adress = txtAdress.getText();
+    String branch = txtBranch.getText();
+    String stad = txtStad.getText();
+
+    // Kontrollera att alla obligatoriska fält är ifyllda
+    if (pid.isEmpty() || namn.isEmpty() || kontaktPerson.isEmpty() || kontaktEpost.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Kontrollera om posten med det angivna PID finns
+    String checkQuery = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
+    String result = idb.fetchSingle(checkQuery);
+
+    if (result == null || Integer.parseInt(result) == 0) {
+        JOptionPane.showMessageDialog(this, "Ingen partner hittades med angivet PID. Kan inte uppdatera!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Skapa UPDATE SQL-fråga
+    String sql = "UPDATE partner SET "
+            + "namn = '" + namn + "', "
+            + "kontaktperson = '" + kontaktPerson + "', "
+            + "kontaktepost = '" + kontaktEpost + "', "
+            + "telefon = '" + telefon + "', "
+            + "adress = '" + adress + "', "
+            + "branch = '" + branch + "', "
+            + "stad = '" + stad + "' "
+            + "WHERE pid = '" + pid + "'";
+
+    // Utför uppdateringen
+    idb.update(sql);
+
+    // Bekräftelsemeddelande
+    JOptionPane.showMessageDialog(this, "Partnerinformationen har uppdaterats!");
+
+} catch (Exception ex) {
+    // Felhantering
+    JOptionPane.showMessageDialog(this, "Fel vid uppdatering av partner: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_btnÄndraActionPerformed
 
     /**
      * @param args the command line arguments
