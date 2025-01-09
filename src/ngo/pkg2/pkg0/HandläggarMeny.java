@@ -11,6 +11,7 @@ import oru.inf.InfException;
  */
 public class HandläggarMeny extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
 
     /**
      * Creates new form HandläggarMeny
@@ -18,6 +19,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     public HandläggarMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
+        this.anvandareID = anvandareID;
     }
 
     /**
@@ -206,22 +208,22 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinaProjektActionPerformed
 
     private void btnAvdelningsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvdelningsProjektActionPerformed
-        new AvdelningsProjekt (idb).setVisible(true);
+        new AvdelningsProjekt (idb, anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAvdelningsProjektActionPerformed
 
     private void btnSammarbetsPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSammarbetsPartnersActionPerformed
-        new SammarbetsPartners (idb).setVisible(true);
+        new SammarbetsPartners (idb, anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSammarbetsPartnersActionPerformed
 
     private void btnHållbarhetsmålActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHållbarhetsmålActionPerformed
-        new Hållbarhetsmål (idb).setVisible(true);
+        new Hållbarhetsmål (idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnHållbarhetsmålActionPerformed
 
     private void btnSökHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökHandläggareActionPerformed
-        new SökHandläggare (idb).setVisible(true);
+        new SökHandläggare (idb, anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSökHandläggareActionPerformed
 
