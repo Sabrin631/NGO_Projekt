@@ -22,10 +22,7 @@ public class Hållbarhetsmål extends javax.swing.JFrame {
     public Hållbarhetsmål(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
-
         this.anvandareID=anvandareID;
-
-        this.anvandareID = anvandareID;
 
         
         laddaHållbarhetsmål();
