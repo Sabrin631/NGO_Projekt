@@ -5,19 +5,25 @@
 package ngo.pkg2.pkg0;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 /**
  *
  * @author aliciafermano
  */
+
 public class MinaProjekt extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
 
     /**
      * Creates new form MinaProjekt
      */
-    public MinaProjekt(InfDB idb) {
+    public MinaProjekt(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
+        this.anvandareID=anvandareID;
     }
 
     /**
@@ -29,11 +35,99 @@ public class MinaProjekt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMinaProjekt = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnHamtaProjekt = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtMinaProjekt.setColumns(20);
+        txtMinaProjekt.setRows(5);
+        jScrollPane1.setViewportView(txtMinaProjekt);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 513, 378));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 6));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setText("Mina Projekt");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(259, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(218, 218, 218))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 13, 780, -1));
+
+        btnHamtaProjekt.setText("Hämta mina Projekt");
+        btnHamtaProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHamtaProjektActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnHamtaProjekt, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 140, 70));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    private ArrayList<String[]> hamtaProjekt(String anvandareID) {
+    ArrayList<String[]> projektLista = new ArrayList<>();
+    try {
+        String sql = "SELECT projekt.pid, projektnamn, beskrivning " +
+             "FROM projekt " +
+             "JOIN ans_proj ON projekt.pid = ans_proj.pid " +
+             "WHERE ans_proj.aid = '" + anvandareID + "'";
+
+        
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+
+        if (resultat != null) {
+            for (HashMap<String, String> rad : resultat) {
+                String[] projekt = { rad.get("pid"), rad.get("projektnamn"), rad.get("beskrivning") };
+                projektLista.add(projekt);
+            }
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ett fel uppstod: " + e.getMessage());
+    }
+    return projektLista;
+}
+
+    private void btnHamtaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHamtaProjektActionPerformed
+        // TODO add your handling code here:
+        // Töm TextArea innan nya resultat visas
+    txtMinaProjekt.setText("");
+    
+    // Hämta projekt för den inloggade användaren
+    ArrayList<String[]> projekt = hamtaProjekt(anvandareID);
+    
+    if (projekt.isEmpty()) {
+        txtMinaProjekt.append("Du är inte tilldelad några projekt.\n");
+    } else {
+        for (String[] p : projekt) {
+            txtMinaProjekt.append("Projekt ID: " + p[0] + "\n");
+            txtMinaProjekt.append("Namn: " + p[1] + "\n");
+            txtMinaProjekt.append("Beskrivning: " + p[2] + "\n");
+            txtMinaProjekt.append("----------------------------\n");
+        }
+    }
+    }//GEN-LAST:event_btnHamtaProjektActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,5 +165,10 @@ public class MinaProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHamtaProjekt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtMinaProjekt;
     // End of variables declaration//GEN-END:variables
 }
