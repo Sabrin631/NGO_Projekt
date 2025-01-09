@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo.pkg2.pkg0;
+import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.*;
@@ -36,17 +37,30 @@ public class ÄndraHandläggare extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtPid = new javax.swing.JTextField();
-        txtHandläggarePid = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnLäggTillHandläggare = new javax.swing.JButton();
-        btnTaBortHandläggare = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtAvdelning = new javax.swing.JTextField();
+        txtLosenord = new javax.swing.JTextField();
+        txtTelefon = new javax.swing.JTextField();
+        txtaid = new javax.swing.JTextField();
+        txtDatum = new javax.swing.JTextField();
+        txtEpost = new javax.swing.JTextField();
+        txtAdress = new javax.swing.JTextField();
+        txtFornamn = new javax.swing.JTextField();
+        txtEfternamn = new javax.swing.JTextField();
+        btnLäggTill = new javax.swing.JButton();
+        btnTaBort = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 6));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 0), 6));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Hantera Handläggare För Projekt");
@@ -56,115 +70,256 @@ public class ÄndraHandläggare extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(165, 165, 165)
                 .addComponent(jLabel1)
-                .addContainerGap(667, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        getContentPane().add(txtPid, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 210, -1));
-        getContentPane().add(txtHandläggarePid, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 210, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Lösenord");
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel2.setText("Projekt-ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Förnamn");
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel3.setText("Handläggar-ID");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("Efternamn");
 
-        btnLäggTillHandläggare.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        btnLäggTillHandläggare.setText("Lägg till Handläggare");
-        btnLäggTillHandläggare.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setText("Adress");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setText("Epost");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setText("Telefon");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setText("Anställningsdatum");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setText("Avdelning");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setText("aid");
+
+        txtAvdelning.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtLosenord.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtTelefon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtaid.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtDatum.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtEpost.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtAdress.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtFornamn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtEfternamn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        btnLäggTill.setText("Lägg Till");
+        btnLäggTill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLäggTillHandläggareActionPerformed(evt);
+                btnLäggTillActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLäggTillHandläggare, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 373, 180, 80));
 
-        btnTaBortHandläggare.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        btnTaBortHandläggare.setText("Ta bort Handläggare");
-        btnTaBortHandläggare.addActionListener(new java.awt.event.ActionListener() {
+        btnTaBort.setText("Ta bort");
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaBortHandläggareActionPerformed(evt);
+                btnTaBortActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTaBortHandläggare, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, 180, 80));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(83, 83, 83)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtaid, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(242, 242, 242)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLäggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(btnLäggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 3, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtEpost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(txtaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addComponent(txtEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel6)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLäggTillHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillHandläggareActionPerformed
-        // TODO add your handling code here:
+    //Denna metod hämtar alla projekt-ID för projekt som den inloggade användaren är projektchef för.
+    private List<String> hamtaProjektForAnvandare(String anvandareID) {
+    List<String> projektList = new ArrayList<>();
+    try {
+        // SQL-fråga för att hämta alla projekt där den inloggade användaren är projektchef
+        String query = "SELECT pid FROM projekt WHERE projektchef = '" + anvandareID + "'";
+        
+        // Hämta kolumnen med alla projekt-ID:n från resultatet
+        List<String> resultat = idb.fetchColumn(query);
+
+        // Om vi får resultat, lägg till varje pid i listan
+        if (resultat != null) {
+            projektList = resultat;
+        }
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(null, "Fel vid hämtning av projekt: " + e.getMessage());
+    }
+    return projektList;
+}
+    private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
+
+    String handlaggareID = txtaid.getText().trim();  // Hämtar handläggarens ID från textfältet
+    String anvandareID = "användarens ID"; // ID för den inloggade användaren (projektansvarig)
+
+    // Hämta alla projekt som den inloggade användaren är ansvarig för
+    List<String> projektList = hamtaProjektForAnvandare(anvandareID);
+
+    if (projektList.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Du är inte ansvarig för något projekt.");
+        return;
+    }
+
+    // Iterera över projekten och lägg till handläggaren till varje projekt
+    for (String pid : projektList) {
         try {
-        String pid = txtPid.getText(); // Projekt-ID
-        String handläggarePid = txtHandläggarePid.getText(); // Handläggarens PID (Partner-ID eller Användar-ID)
-
-        // Kontrollera om användaren är projektansvarig för detta projekt
-        String kontrollProjekt = "SELECT COUNT(*) FROM projekt WHERE pid = '" + pid + "' AND projektchef = '" + anvandareID + "'";
-        String projektResult = idb.fetchSingle(kontrollProjekt);
-
-        if (projektResult != null && Integer.parseInt(projektResult) > 0) {
             // Kontrollera om handläggaren redan är kopplad till projektet
-            String kontrollHandläggare = "SELECT COUNT(*) FROM projekt_partner WHERE projekt_pid = '" + pid + "' AND partner_pid = '" + handläggarePid + "'";
-            String handläggareResult = idb.fetchSingle(kontrollHandläggare);
-            
-            if (handläggareResult != null && Integer.parseInt(handläggareResult) > 0) {
-                JOptionPane.showMessageDialog(this, "Handläggaren är redan kopplad till detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            String kontrollHandlaggare = "SELECT COUNT(*) FROM anst_proj WHERE projekt_id = '" + pid + "' AND handlaggare_id = '" + handlaggareID + "'";
+            String handlaggareResult = idb.fetchSingle(kontrollHandlaggare);
 
-            // Lägg till handläggare i projekt_partner-tabellen
-            String sqlLäggTill = "INSERT INTO projekt_partner (projekt_pid, partner_pid) VALUES ('" + pid + "', '" + handläggarePid + "')";
-            idb.insert(sqlLäggTill);
-            
-            JOptionPane.showMessageDialog(this, "Handläggaren har lagts till i projektet!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Du är inte projektansvarig för detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Fel vid lägg till handläggare: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_btnLäggTillHandläggareActionPerformed
-
-    private void btnTaBortHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortHandläggareActionPerformed
-        // TODO add your handling code here:
-        try {
-        String pid = txtPid.getText(); // Projekt-ID
-        String handläggarePid = txtHandläggarePid.getText(); // Handläggarens PID (Partner-ID eller Användar-ID)
-
-        // Kontrollera om användaren är projektansvarig för detta projekt
-        String kontrollProjekt = "SELECT COUNT(*) FROM projekt WHERE pid = '" + pid + "' AND projektchef = '" + anvandareID + "'";
-        String projektResult = idb.fetchSingle(kontrollProjekt);
-
-        if (projektResult != null && Integer.parseInt(projektResult) > 0) {
-            // Kontrollera om handläggaren är kopplad till projektet
-            String kontrollHandläggare = "SELECT COUNT(*) FROM projekt_partner WHERE projekt_pid = '" + pid + "' AND partner_pid = '" + handläggarePid + "'";
-            String handläggareResult = idb.fetchSingle(kontrollHandläggare);
-
-            if (handläggareResult != null && Integer.parseInt(handläggareResult) > 0) {
-                // Ta bort handläggaren från projektet
-                String sqlTaBort = "DELETE FROM projekt_partner WHERE projekt_pid = '" + pid + "' AND partner_pid = '" + handläggarePid + "'";
-                idb.insert(sqlTaBort);
-
-                JOptionPane.showMessageDialog(this, "Handläggaren har tagits bort från projektet!");
+            if (Integer.parseInt(handlaggareResult) == 0) {
+                // Handläggaren är inte kopplad till projektet, lägg till handläggaren
+                String query = "INSERT INTO anst_proj (projekt_id, handlaggare_id) VALUES ('" + pid + "', '" + handlaggareID + "')";
+                idb.insert(query);
+                JOptionPane.showMessageDialog(null, "Handläggare tillagd till projektet med ID: " + pid);
             } else {
-                JOptionPane.showMessageDialog(this, "Handläggaren är inte kopplad till detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Handläggaren är redan kopplad till projektet med ID: " + pid);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Du är inte projektansvarig för detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel uppstod vid tillägg: " + e.getMessage());
         }
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Fel vid ta bort handläggare: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_btnTaBortHandläggareActionPerformed
+    }//GEN-LAST:event_btnLäggTillActionPerformed
+
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+
+    String handlaggareID = txtaid.getText().trim();  // Hämtar handläggarens ID från textfältet
+    String anvandareID = "användarens ID"; // ID för den inloggade användaren (projektansvarig)
+
+    // Hämta alla projekt som den inloggade användaren är ansvarig för
+    List<String> projektList = hamtaProjektForAnvandare(anvandareID);
+
+    if (projektList.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Du är inte ansvarig för något projekt.");
+        return;
+    }
+
+    // Iterera över projekten och ta bort handläggaren från varje projekt
+    for (String pid : projektList) {
+        try {
+            // Kontrollera om handläggaren är kopplad till projektet
+            String kontrollHandlaggare = "SELECT COUNT(*) FROM anst_proj WHERE projekt_id = '" + pid + "' AND handlaggare_id = '" + handlaggareID + "'";
+            String handlaggareResult = idb.fetchSingle(kontrollHandlaggare);
+
+            if (Integer.parseInt(handlaggareResult) > 0) {
+                // Handläggaren är kopplad till projektet, ta bort handläggaren
+                String deleteQuery = "DELETE FROM anst_proj WHERE projekt_id = '" + pid + "' AND handlaggare_id = '" + handlaggareID + "'";
+                idb.delete(deleteQuery);
+                JOptionPane.showMessageDialog(null, "Handläggare borttagen från projektet med ID: " + pid);
+            } else {
+                JOptionPane.showMessageDialog(null, "Handläggaren är inte kopplad till projektet med ID: " + pid);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel uppstod vid borttagning: " + e.getMessage());
+        }
+    }
+    }//GEN-LAST:event_btnTaBortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,13 +357,27 @@ public class ÄndraHandläggare extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLäggTillHandläggare;
-    private javax.swing.JButton btnTaBortHandläggare;
+    private javax.swing.JButton btnLäggTill;
+    private javax.swing.JButton btnTaBort;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtHandläggarePid;
-    private javax.swing.JTextField txtPid;
+    private javax.swing.JTextField txtAdress;
+    private javax.swing.JTextField txtAvdelning;
+    private javax.swing.JTextField txtDatum;
+    private javax.swing.JTextField txtEfternamn;
+    private javax.swing.JTextField txtEpost;
+    private javax.swing.JTextField txtFornamn;
+    private javax.swing.JTextField txtLosenord;
+    private javax.swing.JTextField txtTelefon;
+    private javax.swing.JTextField txtaid;
     // End of variables declaration//GEN-END:variables
 }

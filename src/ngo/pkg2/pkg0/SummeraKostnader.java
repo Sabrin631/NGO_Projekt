@@ -40,13 +40,12 @@ public class SummeraKostnader extends javax.swing.JFrame {
         btnVisaStatistik = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        txtTotalKostnad = new javax.swing.JTextField();
+        txtTotalKostnad = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 6));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 0), 6));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Statistik Över Projektkostnader");
@@ -56,19 +55,19 @@ public class SummeraKostnader extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 570, -1));
 
         btnVisaStatistik.setText("Visa Statistik");
         btnVisaStatistik.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +75,7 @@ public class SummeraKostnader extends javax.swing.JFrame {
                 btnVisaStatistikActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVisaStatistik, new org.netbeans.lib.awtextra.AbsoluteConstraints(436, 480, 160, 70));
+        getContentPane().add(btnVisaStatistik, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 160, 110));
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
@@ -84,73 +83,37 @@ public class SummeraKostnader extends javax.swing.JFrame {
                 btnTillbakaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTillbaka, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, 110, 30));
+        getContentPane().add(btnTillbaka, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 160, 100));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txtTotalKostnad.setColumns(20);
+        txtTotalKostnad.setRows(5);
+        jScrollPane2.setViewportView(txtTotalKostnad);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 270, 360));
-
-        txtTotalKostnad.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        txtTotalKostnad.setText("Totalkostnad");
-        getContentPane().add(txtTotalKostnad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 110, 30));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 320, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVisaStatistikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaStatistikActionPerformed
-        try {
-    String sqlQuery = "SELECT projekt.namn, COALESCE(SUM(kostnader.kostnad), 0) AS total_kostnad " +
-                      "FROM projekt " +
-                      "LEFT JOIN kostnader ON projekt.pid = kostnader.projekt_pid " +
-                      "WHERE projekt.projektchef = '" + anvandareID + "' " +
-                      "GROUP BY projekt.namn";
+    private double hamtaTotalKostnadForAnvandare(String anvandareID) {
+    double totalKostnad = 0;
+    try {
+        // SQL-fråga för att hämta summan av kostnader för alla projekt där användaren är projektchef
+        String query = "SELECT SUM(kostnad) FROM projekt WHERE projektchef = '" + anvandareID + "'";
 
-    // Variabel för totalkostnad
-    double totalkostnad = 0;
+        // Hämta resultatet av frågan (summan av kostnaden)
+        String resultat = idb.fetchSingle(query);
 
-    // Rensa textområden
-    jTextArea1.setText("");
-    txtTotalKostnad.setText("");
-
-    // Iterera över alla rader manuellt
-    HashMap<String, String> rad;
-    boolean hasResults = false;
-
-    for (int i = 1; (rad = idb.fetchRow(sqlQuery)) != null; i++) {
-        hasResults = true;
-
-        String projektNamn = rad.get("namn");
-        String kostnad = rad.get("total_kostnad");
-
-        // Lägg till data i textområdet
-        jTextArea1.append("Projekt: " + projektNamn + "\n");
-        jTextArea1.append("Kostnad: " + kostnad + " kr\n\n");
-
-        // Summera totalkostnaden
-        totalkostnad += Double.parseDouble(kostnad);
+        if (resultat != null) {
+            totalKostnad = Double.parseDouble(resultat);
+        }
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(null, "Fel vid hämtning av kostnad: " + e.getMessage());
     }
-
-    // Om inga resultat hittades
-    if (!hasResults) {
-        jTextArea1.append("Inga projekt hittades eller inga kostnader registrerade.\n");
-    }
-
-    // Visa totalkostnaden
-    txtTotalKostnad.setText(totalkostnad + " kr");
-
-} catch (InfException e) {
-    JOptionPane.showMessageDialog(this, "Fel vid hämtning av statistik: " + e.getMessage(), 
-                                  "Fel", JOptionPane.ERROR_MESSAGE);
-} catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(this, "Fel vid konvertering av data: " + e.getMessage(), 
-                                  "Fel", JOptionPane.ERROR_MESSAGE);
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Ett oväntat fel inträffade: " + e.getMessage(), 
-                                  "Fel", JOptionPane.ERROR_MESSAGE);
+    return totalKostnad;
 }
-
+    private void btnVisaStatistikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaStatistikActionPerformed
+        double totalKostnad = hamtaTotalKostnadForAnvandare(anvandareID);
+        txtTotalKostnad.setText("Totalkostnad: " + totalKostnad);
     }//GEN-LAST:event_btnVisaStatistikActionPerformed
     private JFrame frame;
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -203,7 +166,6 @@ public class SummeraKostnader extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField txtTotalKostnad;
+    private javax.swing.JTextArea txtTotalKostnad;
     // End of variables declaration//GEN-END:variables
 }

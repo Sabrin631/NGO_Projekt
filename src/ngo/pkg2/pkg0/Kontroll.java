@@ -36,8 +36,9 @@ public class Kontroll extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         btnKlar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtId = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,8 +64,6 @@ public class Kontroll extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        txtId.setText("Skriv ditt ID här . . .");
-
         btnKlar.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         btnKlar.setText("Klar");
         btnKlar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +71,11 @@ public class Kontroll extends javax.swing.JFrame {
                 btnKlarActionPerformed(evt);
             }
         });
+
+        txtId.setColumns(20);
+        txtId.setRows(5);
+        txtId.setText("\n\n\n\n\nAnge ditt AnställningID Här  .   .   .\n");
+        jScrollPane1.setViewportView(txtId);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,9 +85,9 @@ public class Kontroll extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(289, 289, 289)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnKlar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113))
         );
@@ -91,10 +95,10 @@ public class Kontroll extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnKlar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnKlar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 101, Short.MAX_VALUE))
         );
 
@@ -103,26 +107,31 @@ public class Kontroll extends javax.swing.JFrame {
 
     private void btnKlarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKlarActionPerformed
         try {
-        // Hämta användarens ID från textfältet
-        String inputAnvandareID = txtId.getText().trim();
+            // Hämta användarens inmatade ID
+            String inputAnvandareID = txtId.getText().trim();
 
-        // Kontrollera att användar-ID inte är tomt
-        if (inputAnvandareID.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Användar-ID kan inte vara tomt.", "Fel", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            // Kontrollera om användaren har angett ett ID
+            if (inputAnvandareID.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Användar-ID kan inte vara tomt. Vänligen skriv in ditt ID.", "Fel", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        // SQL-fråga för att kontrollera om användaren är en projektchef
-        String query = "SELECT projektchef FROM projekt WHERE projektchef = '" + inputAnvandareID + "'";
-        String resultat = idb.fetchSingle(query);
+            // Kontrollera om det inmatade ID:t är samma som det inloggade användarens ID
+            if (!inputAnvandareID.equals(anvandareID)) {
+                JOptionPane.showMessageDialog(this, "Detta är inte ditt ID. Skriv in ditt korrekta ID och försök igen.", "Fel", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        // Kontrollera om användaren finns i projektchef-kolumnen
-        if (resultat == null) {
-            JOptionPane.showMessageDialog(this, "Du är inte en projektchef och får inte fortsätta.", "Åtkomst nekad", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Om användaren är en projektchef, fortsätt
-            JOptionPane.showMessageDialog(this, "Validering godkänd! Du är en projektchef.", "Åtkomst beviljad", JOptionPane.INFORMATION_MESSAGE);
+            // Om ID:t är korrekt, fortsätt validering
+            String query = "SELECT projektchef FROM projekt WHERE projektchef = '" + inputAnvandareID + "'";
+            String resultat = idb.fetchSingle(query);
 
+            // Kontrollera om användaren finns i projektchef-kolumnen
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte en projektchef och får inte fortsätta.", "Åtkomst nekad", JOptionPane.ERROR_MESSAGE);
+            } else {
+                // Om användaren är en projektchef, fortsätt
+                JOptionPane.showMessageDialog(this, "Validering godkänd! Du är en projektchef.", "Åtkomst beviljad", JOptionPane.INFORMATION_MESSAGE);
             
             new infoOmProjekt (idb,anvandareID).setVisible(true);
             this.setVisible(false);
@@ -171,6 +180,7 @@ public class Kontroll extends javax.swing.JFrame {
     private javax.swing.JButton btnKlar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtId;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtId;
     // End of variables declaration//GEN-END:variables
 }

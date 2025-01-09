@@ -306,7 +306,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnH&#xe4;mtaProjekt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="H&#xe4;mta Projekt"/>
+        <Property name="text" type="java.lang.String" value="Mina Projekt"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnH&#xe4;mtaProjektActionPerformed"/>
@@ -335,14 +335,14 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="6">
-              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color PropertyName="color" blue="0" green="66" red="66" type="rgb"/>
             </LineBorder>
           </Border>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="20" width="360" height="-1"/>
+          <AbsoluteConstraints x="10" y="20" width="360" height="110"/>
         </Constraint>
       </Constraints>
 
@@ -359,7 +359,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>

@@ -155,7 +155,7 @@ public class ÄndraProjektProjektChef extends javax.swing.JFrame {
         txtKostnad.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         getContentPane().add(txtKostnad, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 230, -1));
 
-        btnHämtaProjekt.setText("Hämta Projekt");
+        btnHämtaProjekt.setText("Mina Projekt");
         btnHämtaProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHämtaProjektActionPerformed(evt);
@@ -171,7 +171,7 @@ public class ÄndraProjektProjektChef extends javax.swing.JFrame {
         });
         getContentPane().add(btnÄndraProjekt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, 160, 80));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 6));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 0), 6));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel9.setText("Ändra mina projekt");
@@ -188,12 +188,12 @@ public class ÄndraProjektProjektChef extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(41, 41, 41))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 360, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 360, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
