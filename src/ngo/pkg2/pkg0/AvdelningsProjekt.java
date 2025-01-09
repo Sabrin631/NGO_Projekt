@@ -12,13 +12,15 @@ import oru.inf.InfException;
  */
 public class AvdelningsProjekt extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
 
     /**
      * Creates new form AvdelningsProjekt
      */
-    public AvdelningsProjekt(InfDB idb) {
+    public AvdelningsProjekt(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
+        this.anvandareID = anvandareID;
     }
 
     /**
