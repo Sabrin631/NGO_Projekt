@@ -237,7 +237,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSammarbetsPartnersActionPerformed
 
     private void btnHållbarhetsmålActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHållbarhetsmålActionPerformed
-        new Hållbarhetsmål (idb).setVisible(true);
+        new Hållbarhetsmål (idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnHållbarhetsmålActionPerformed
 
