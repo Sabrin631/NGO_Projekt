@@ -102,15 +102,16 @@ public class SökHandläggare extends javax.swing.JFrame {
     ArrayList<String[]> handlaggareLista = new ArrayList<>();
     try {
         // Byt ut '3' med den inloggade användarens ID (anvandareID)
-        String sql = "SELECT aid, fornamn, efternamn" +
-                     "FROM anstalld " +
-                     "JOIN avdelning av ON avdelning = avdid " +
-                     "WHERE (fornamn LIKE '%" + sokNamn + "%') " +
-                     "AND avdid = (" +
-                     "    SELECT avdid " +
-                     "    FROM anstalld " +
-                     "    WHERE aid = '" + anvandareID + "'" +
-                     ")";
+        String sql = "SELECT aid, fornamn, efternamn " + 
+             "FROM anstalld " + 
+             "JOIN avdelning av ON anstalld.avdelning = av.avdid " + 
+             "WHERE fornamn LIKE '%" + sokNamn + "%' " + 
+             "AND av.avdid = ( " + 
+             "    SELECT avdelning " + 
+             "    FROM anstalld " + 
+             "    WHERE aid = '" + anvandareID + "' " + 
+             ")";
+
 
         ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
