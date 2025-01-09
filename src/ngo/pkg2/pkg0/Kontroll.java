@@ -102,10 +102,9 @@ public class Kontroll extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKlarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKlarActionPerformed
-        // TODO add your handling code here:
         try {
         // Hämta användarens ID från textfältet
-        String inputAnvandareID = jTextField1.getText().trim();
+        String inputAnvandareID = txtId.getText().trim();
 
         // Kontrollera att användar-ID inte är tomt
         if (inputAnvandareID.isEmpty()) {
@@ -115,22 +114,22 @@ public class Kontroll extends javax.swing.JFrame {
 
         // SQL-fråga för att kontrollera om användaren är en projektchef
         String query = "SELECT projektchef FROM projekt WHERE projektchef = '" + inputAnvandareID + "'";
-        String roll = idb.fetchSingle(query);
+        String resultat = idb.fetchSingle(query);
 
-        // Kontrollera om roll är null eller inte projektchef
-        if (roll == null || !roll.equalsIgnoreCase("projektchef")) {
+        // Kontrollera om användaren finns i projektchef-kolumnen
+        if (resultat == null) {
             JOptionPane.showMessageDialog(this, "Du är inte en projektchef och får inte fortsätta.", "Åtkomst nekad", JOptionPane.ERROR_MESSAGE);
         } else {
             // Om användaren är en projektchef, fortsätt
             JOptionPane.showMessageDialog(this, "Validering godkänd! Du är en projektchef.", "Åtkomst beviljad", JOptionPane.INFORMATION_MESSAGE);
 
-            // Här kan du öppna nästa fönster eller utföra andra åtgärder
-            // Exempel:
-            // new NästaFönster(idb, inputAnvandareID).setVisible(true);
-            // this.dispose(); // Stäng nuvarande fönster
+            
+            new infoOmProjekt (idb,anvandareID).setVisible(true);
+            this.setVisible(false);
         }
     } catch (InfException e) {
-        JOptionPane.showMessageDialog(this, "Fel vid validering: " + e.getMessage(), "Databasfel", JOptionPane.ERROR_MESSAGE);} 
+        JOptionPane.showMessageDialog(this, "Fel vid validering: " + e.getMessage(), "Databasfel", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnKlarActionPerformed
 
     /**
