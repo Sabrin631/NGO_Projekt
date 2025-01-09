@@ -23,11 +23,11 @@ public class SökHandläggare extends javax.swing.JFrame {
     public SökHandläggare(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
-<<<<<<< Updated upstream
+
         this.anvandareID=anvandareID;
-=======
         this.anvandareID = anvandareID;
->>>>>>> Stashed changes
+        this.anvandareID = anvandareID;
+
     }
 
     /**
