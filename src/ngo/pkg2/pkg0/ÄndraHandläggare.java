@@ -34,21 +34,137 @@ public class ÄndraHandläggare extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtPid = new javax.swing.JTextField();
+        txtHandläggarePid = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnLäggTillHandläggare = new javax.swing.JButton();
+        btnTaBortHandläggare = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 6));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        jLabel1.setText("Hantera Handläggare För Projekt");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(jLabel1)
+                .addContainerGap(667, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(txtPid, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 210, -1));
+        getContentPane().add(txtHandläggarePid, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 210, -1));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel2.setText("Projekt-ID");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel3.setText("Handläggar-ID");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        btnLäggTillHandläggare.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnLäggTillHandläggare.setText("Lägg till Handläggare");
+        btnLäggTillHandläggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLäggTillHandläggareActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLäggTillHandläggare, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 373, 180, 80));
+
+        btnTaBortHandläggare.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnTaBortHandläggare.setText("Ta bort Handläggare");
+        btnTaBortHandläggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortHandläggareActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnTaBortHandläggare, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, 180, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLäggTillHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillHandläggareActionPerformed
+        // TODO add your handling code here:
+        try {
+        String pid = txtPid.getText(); // Projekt-ID
+        String handläggarePid = txtHandläggarePid.getText(); // Handläggarens PID (Partner-ID eller Användar-ID)
+
+        // Kontrollera om användaren är projektansvarig för detta projekt
+        String kontrollProjekt = "SELECT COUNT(*) FROM projekt WHERE pid = '" + pid + "' AND projektchef = '" + anvandareID + "'";
+        String projektResult = idb.fetchSingle(kontrollProjekt);
+
+        if (projektResult != null && Integer.parseInt(projektResult) > 0) {
+            // Kontrollera om handläggaren redan är kopplad till projektet
+            String kontrollHandläggare = "SELECT COUNT(*) FROM projekt_partner WHERE projekt_pid = '" + pid + "' AND partner_pid = '" + handläggarePid + "'";
+            String handläggareResult = idb.fetchSingle(kontrollHandläggare);
+            
+            if (handläggareResult != null && Integer.parseInt(handläggareResult) > 0) {
+                JOptionPane.showMessageDialog(this, "Handläggaren är redan kopplad till detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Lägg till handläggare i projekt_partner-tabellen
+            String sqlLäggTill = "INSERT INTO projekt_partner (projekt_pid, partner_pid) VALUES ('" + pid + "', '" + handläggarePid + "')";
+            idb.insert(sqlLäggTill);
+            
+            JOptionPane.showMessageDialog(this, "Handläggaren har lagts till i projektet!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Du är inte projektansvarig för detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Fel vid lägg till handläggare: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnLäggTillHandläggareActionPerformed
+
+    private void btnTaBortHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortHandläggareActionPerformed
+        // TODO add your handling code here:
+        try {
+        String pid = txtPid.getText(); // Projekt-ID
+        String handläggarePid = txtHandläggarePid.getText(); // Handläggarens PID (Partner-ID eller Användar-ID)
+
+        // Kontrollera om användaren är projektansvarig för detta projekt
+        String kontrollProjekt = "SELECT COUNT(*) FROM projekt WHERE pid = '" + pid + "' AND projektchef = '" + anvandareID + "'";
+        String projektResult = idb.fetchSingle(kontrollProjekt);
+
+        if (projektResult != null && Integer.parseInt(projektResult) > 0) {
+            // Kontrollera om handläggaren är kopplad till projektet
+            String kontrollHandläggare = "SELECT COUNT(*) FROM projekt_partner WHERE projekt_pid = '" + pid + "' AND partner_pid = '" + handläggarePid + "'";
+            String handläggareResult = idb.fetchSingle(kontrollHandläggare);
+
+            if (handläggareResult != null && Integer.parseInt(handläggareResult) > 0) {
+                // Ta bort handläggaren från projektet
+                String sqlTaBort = "DELETE FROM projekt_partner WHERE projekt_pid = '" + pid + "' AND partner_pid = '" + handläggarePid + "'";
+                idb.insert(sqlTaBort);
+
+                JOptionPane.showMessageDialog(this, "Handläggaren har tagits bort från projektet!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Handläggaren är inte kopplad till detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Du är inte projektansvarig för detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Fel vid ta bort handläggare: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnTaBortHandläggareActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +202,13 @@ public class ÄndraHandläggare extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLäggTillHandläggare;
+    private javax.swing.JButton btnTaBortHandläggare;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtHandläggarePid;
+    private javax.swing.JTextField txtPid;
     // End of variables declaration//GEN-END:variables
 }
