@@ -14,13 +14,15 @@ import java.util.List;
  */
 public class Hållbarhetsmål extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
 
     /**
      * Creates new form Hållbarhetsmål
      */
-    public Hållbarhetsmål(InfDB idb) {
+    public Hållbarhetsmål(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
+        this.anvandareID = anvandareID;
         
         laddaHållbarhetsmål();
     }
