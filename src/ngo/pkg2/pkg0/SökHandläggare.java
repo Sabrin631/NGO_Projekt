@@ -27,6 +27,9 @@ public class SökHandläggare extends javax.swing.JFrame {
        
 
 
+
+        this.anvandareID = anvandareID;
+
     }
 
     /**
@@ -108,7 +111,7 @@ public class SökHandläggare extends javax.swing.JFrame {
                      "    FROM anstalld " +
                      "    WHERE aid = '" + anvandareID + "'" +
                      ")";
-                     
+
         ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
         if (resultat != null) {
