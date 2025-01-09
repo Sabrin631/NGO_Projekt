@@ -124,17 +124,21 @@ public class SammarbetsPartners extends javax.swing.JFrame {
     private ArrayList<String[]> hamtaPartners(String anvandareID) {
     ArrayList<String[]> partnerLista = new ArrayList<>();
     try {
-        String sql = "Select projekt.pid, partner.pid, partner.namn from partner\n" +
-                     "join projekt_partner on partner.pid = projekt_partner.partner_pid\n" +
-                     "join projekt on projekt_partner.partner_pid\n" +
-                     "join ans_proj on projekt.pid = ans_proj.pid\n" +
+        String sql = "Select projekt.pid, partner.pid as PaID, partner.namn " + 
+                     "from partner " +
+                     "Join projekt_partner on partner.pid = projekt_partner.partner_pid " +
+                     "join projekt on projekt_partner.pid = projekt.pid " +
+                     "join ans_proj on projekt.pid = ans_proj.pid " +
                      "where ans_proj.aid = '" + anvandareID + "'";
         
         ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
         if (resultat != null) {
             for (HashMap<String, String> rad : resultat) {
-                String[] partner = { rad.get("projekt.pid"), rad.get("partner.pid"), rad.get("partner.namn") };
+                String[] partner = 
+                {   rad.get("pid"),  // hämta ProjekID
+                    rad.get("pid"),  // hämta partnerID
+                    rad.get("namn") }; //hämta Partner namn
                 partnerLista.add(partner);
             }
         }
