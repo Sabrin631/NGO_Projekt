@@ -12,11 +12,8 @@ import oru.inf.InfException;
  */
 public class SökHandläggare extends javax.swing.JFrame {
     private InfDB idb;
-<<<<<<< HEAD
-    String anvandareID;
-=======
     private String anvandareID;
->>>>>>> main
+
 
     /**
      * Creates new form SökHandläggare
@@ -24,11 +21,11 @@ public class SökHandläggare extends javax.swing.JFrame {
     public SökHandläggare(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
-<<<<<<< HEAD
+
         this.anvandareID = anvandareID;
-=======
+
         this.anvandareID=anvandareID;
->>>>>>> main
+
     }
 
     /**

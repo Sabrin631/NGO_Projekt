@@ -12,10 +12,10 @@ import oru.inf.InfException;
 public class HandläggarMeny extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
-<<<<<<< HEAD
-=======
+
+
     
->>>>>>> main
+
 
     /**
      * Creates new form HandläggarMeny
@@ -230,11 +230,10 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinaProjektActionPerformed
 
     private void btnAvdelningsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvdelningsProjektActionPerformed
-<<<<<<< HEAD
         new AvdelningsProjekt (idb, anvandareID).setVisible(true);
-=======
+
         new AvdelningsProjekt (idb,anvandareID).setVisible(true);
->>>>>>> main
+
         this.setVisible(false);
     }//GEN-LAST:event_btnAvdelningsProjektActionPerformed
 
@@ -249,11 +248,11 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHållbarhetsmålActionPerformed
 
     private void btnSökHandläggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökHandläggareActionPerformed
-<<<<<<< HEAD
+
         new SökHandläggare (idb, anvandareID).setVisible(true);
-=======
+
         new SökHandläggare (idb,anvandareID).setVisible(true);
->>>>>>> main
+
         this.setVisible(false);
     }//GEN-LAST:event_btnSökHandläggareActionPerformed
 
