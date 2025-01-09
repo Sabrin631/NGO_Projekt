@@ -5,6 +5,8 @@
 package ngo.pkg2.pkg0;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.*;
+import java.util.List;
 
 /**
  *
@@ -20,6 +22,36 @@ public class SökProjekt extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
     }
+    
+    private void sökProjekt() {
+        try {
+            
+            String startdatum = textFieldStartDatum.getText();
+            String slutDatum = textFieldSlutDatum.getText();
+            
+            
+            if (startdatum.isEmpty()|| slutDatum.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ange både start- och slutdatum.");
+                return;
+            }
+            
+            System.out.println("SQL Query: SELECT projektnamn FROM projekt WHERE startdatum >= '" + startdatum + "' AND slutdatum <= '" + slutDatum +"'");
+            String query = "SELECT projektnamn FROM projekt WHERE startDatum >= '" + startdatum + "' AND slutdatum <= '" + slutDatum + "'";
+            
+            List<String> projekt = idb.fetchColumn(query);
+            textAreaResultat.setText("");
+            
+            if (projekt != null && !projekt.isEmpty()) {
+                for (String namn : projekt) {
+                    textAreaResultat.append(namn + "\n");
+                }
+            } else {
+                textAreaResultat.setText("Inga projekt hittades för det angivna datumspannet.");
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(this, "Fel vid hämtning av projekt" + ex.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,21 +62,51 @@ public class SökProjekt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        textFieldStartDatum = new javax.swing.JTextField();
+        textFieldSlutDatum = new javax.swing.JTextField();
+        sökKnapp = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaResultat = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        textFieldStartDatum.setText("startdatum");
+        getContentPane().add(textFieldStartDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 209, 158, 85));
+
+        textFieldSlutDatum.setText("Slutdatum");
+        getContentPane().add(textFieldSlutDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 351, 144, 74));
+
+        sökKnapp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        sökKnapp.setText("Sök");
+        sökKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sökKnappActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sökKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 97, 92, 46));
+
+        textAreaResultat.setColumns(20);
+        textAreaResultat.setRows(5);
+        jScrollPane1.setViewportView(textAreaResultat);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 196, -1, 302));
+
+        jLabel1.setText("(ÅÅÅÅ-MM-DD)");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 150, -1));
+
+        jLabel2.setText("(ÅÅÅÅ-MM-DD)");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 130, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sökKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökKnappActionPerformed
+
+        sökProjekt();
+    }//GEN-LAST:event_sökKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +144,12 @@ public class SökProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton sökKnapp;
+    private javax.swing.JTextArea textAreaResultat;
+    private javax.swing.JTextField textFieldSlutDatum;
+    private javax.swing.JTextField textFieldStartDatum;
     // End of variables declaration//GEN-END:variables
 }
