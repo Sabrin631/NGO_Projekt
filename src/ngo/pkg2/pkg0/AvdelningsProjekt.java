@@ -37,282 +37,157 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ComboBoxVäljStatus = new javax.swing.JComboBox<>();
+        btnHämtaProjekt = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaProjekt = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnHämtaProjekt = new javax.swing.JButton();
+        TextAreaProjekt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 6));
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 8));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setText("Projekt på min avdelning");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(127, 127, 127))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel1)
-                .addContainerGap(202, Short.MAX_VALUE))
-
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-
-        textAreaProjekt.setColumns(20);
-        textAreaProjekt.setRows(5);
-        jScrollPane1.setViewportView(textAreaProjekt);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Avslutade", "Planerade" }));
+        ComboBoxVäljStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Avslutat", "Planerat", " ", " " }));
+        getContentPane().add(ComboBoxVäljStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 137, -1));
 
         btnHämtaProjekt.setText("Hämta Projekt");
         btnHämtaProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHämtaProjektActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnHämtaProjekt, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, 137, 51));
 
-                .addGap(34, 34, 34)
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 7));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setText("Sök  Projekt På Min Avdelning");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Avslutat", "Planerat" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Alla Projekt På Avdelningen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHämtaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHämtaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 626, -1));
+
+        TextAreaProjekt.setColumns(20);
+        TextAreaProjekt.setRows(5);
+        jScrollPane1.setViewportView(TextAreaProjekt);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 470, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   private void hämtaProjekt(String valdStatus) {
-        try {
-            // Hämta avdelning baserat på användarens ID
-            String avdelningQuery = "SELECT Avdelning FROM Anstalld WHERE AnstalldID = '" + anvandareID + "'";
-            String avdelning = idb.fetchSingle(avdelningQuery);
-
-            // Skapa grundläggande query för att hämta projekt baserat på avdelning
-            String query = "SELECT * FROM Projekt WHERE Avdelning = '" + avdelning + "'";
-
-            // Lägg till filter baserat på vald status i ComboBox
-            if (!valdStatus.equals("Alla")) {
-                query += " AND Status = '" + valdStatus + "'";
-            }
-
-            // Hämta listan av projekt från databasen (utan ResultSet)
-            ArrayList<HashMap<String, String>> projektLista = idb.fetchRows(query);
-
-            // Bygg upp projektlistan som en sträng
-            StringBuilder projektList = new StringBuilder();
-
-            // Lägg till varje projekt till textområdet
-            for (HashMap<String, String> projekt : projektLista) {
-                projektList.append("Projekt ID: ").append(projekt.get("ProjektID"))
-                           .append(", Namn: ").append(projekt.get("Namn"))
-                           .append(", Status: ").append(projekt.get("Status"))
-                           .append("\n");
-            }
-
-            // Uppdatera textområdet med resultatet
-            textAreaProjekt.setText(projektList.toString());
-
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Fel vid hämtning av projekt: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    private void btnHämtaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaProjektActionPerformed
-        // TODO add your handling code here:
-        String valdStatus = (String) jComboBox1.getSelectedItem(); // Hämta vald status från ComboBox
-            hämtaProjekt(valdStatus); // Anropa metod för att hämta och visa projekten
-        
-    }//GEN-LAST:event_btnHämtaProjektActionPerformed
-
-    private ArrayList<String[]> hamtaProjektAvdelning(String avdelningNamn, String status) {
-    ArrayList<String[]> projektLista = new ArrayList<>();
+    private ArrayList<String[]> hamtaHandlaggare(String sokNamn) {
+    ArrayList<String[]> handlaggareLista = new ArrayList<>();
     try {
-        // SQL-fråga för att hämta projekt baserat på avdelning och status
-        String sql = "SELECT projekt.pid, projektnamn, beskrivning, status " +
-                     "FROM projekt " +
-                     "JOIN avdelning ON projekt.avdelning = avdelning.avdid " +
-                     "WHERE avdelning.namn = '" + avdelningNamn + "'";
+        // Hämta avdelning för användaren
+        String avdelningQuery = "SELECT avdelning FROM anstalld WHERE aid = '" + anvandareID + "'";
+        String avdelning = idb.fetchSingle(avdelningQuery);
+        System.out.println("Användarens avdelning: " + avdelning);  // Logga avdelningen
 
-        // Lägg till status-filter om det inte är "Alla"
-        if (!status.equals("Alla")) {
-            sql += " AND projekt.status = '" + status + "'";
+        // Kontrollera om avdelningen är null eller tom
+        if (avdelning == null || avdelning.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Användaren har inte kopplats till en avdelning.");
+            return handlaggareLista;  // Stoppa vidare exekvering
         }
+
+        // SQL-fråga
+        String sql = "SELECT aid, fornamn, efternamn " + 
+                     "FROM anstalld " + 
+                     "JOIN avdelning av ON anstalld.avdelning = av.avdid " + 
+                     "WHERE fornamn LIKE '%" + sokNamn + "%' " + 
+                     "AND av.namn = '" + avdelning + "'";  // Använd avdelningens namn istället för ID
 
         // Logga SQL-frågan
-        System.out.println("SQL: " + sql);
+        System.out.println("SQL-fråga: " + sql);
 
-        // Kör SQL-frågan
         ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
-        // Kontrollera om resultatet är null
-        if (resultat == null) {
-            JOptionPane.showMessageDialog(this, "Inga projekt hittades för avdelningen: " + avdelningNamn);
-            return projektLista;
-        }
-
-        // Loopar igenom resultatet och lägger till i listan
-        for (HashMap<String, String> rad : resultat) {
-            String[] projekt = {
-                rad.get("pid"),
-                rad.get("projektnamn"),
-                rad.get("beskrivning"),
-                rad.get("status")
-            };
-            projektLista.add(projekt);
+        if (resultat != null) {
+            for (HashMap<String, String> rad : resultat) {
+                String[] handlaggare = { rad.get("aid"), rad.get("fornamn"), rad.get("efternamn") };
+                handlaggareLista.add(handlaggare);
+            }
         }
     } catch (Exception e) {
-        // Skriv ut stacktrace och visa felmeddelande
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av projekt: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Ett fel uppstod: " + e.getMessage());
     }
-    return projektLista;
+    return handlaggareLista;
 }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnHämtaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaProjektActionPerformed
         // Töm TextArea innan nya resultat visas
-    jTextArea1.setText("");
+    TextAreaProjekt.setText("");
 
     // Hämta valt status från ComboBox
-    String valtStatus = jComboBox1.getSelectedItem().toString();
+    String valtStatus = ComboBoxVäljStatus.getSelectedItem().toString();
 
-    // Hämta projekt för avdelningen "Hög" baserat på valt status
-    ArrayList<String[]> projektLista = hamtaProjektAvdelning("Hög", valtStatus);
+    try {
+        // Hämta avdelning baserat på användarens ID
+        String avdelningQuery = "SELECT avdelning FROM Anstalld WHERE aid = '" + anvandareID + "'";
+        String avdelning = idb.fetchSingle(avdelningQuery);
 
-    // Kontrollera om det finns projekt
-    if (projektLista.isEmpty()) {
-        jTextArea1.append("Inga projekt hittades för avdelningen Hög med status: " + valtStatus + "\n");
-    } else {
-        // Visa projekt
-        for (String[] projekt : projektLista) {
-            jTextArea1.append("Projekt ID: " + projekt[0] + "\n");
-            jTextArea1.append("Projektnamn: " + projekt[1] + "\n");
-            jTextArea1.append("Beskrivning: " + projekt[2] + "\n");
-            jTextArea1.append("Status: " + projekt[3] + "\n");
-            jTextArea1.append("----------------------------\n");
+        if (avdelning == null) {
+            TextAreaProjekt.setText("Ingen avdelning hittades för användaren.");
+            return;
         }
+
+        // Skapa SQL-frågan för att hämta projekt baserat på projektchefens avdelning
+        String sql = "SELECT projekt.pid, projekt.projektnamn, projekt.beskrivning, projekt.status, " +
+             "concat(projektchef.fornamn, ' ', projektchef.efternamn) as projektchef " +
+             "FROM projekt " +
+             "JOIN anstalld AS projektchef ON projekt.projektchef = projektchef.aid " +
+             "JOIN avdelning ON projektchef.avdelning = avdelning.avdid " +
+             "WHERE avdelning.avdid = 2";
+
+
+        // Om status inte är "Alla", lägg till filter för status
+        if (!valtStatus.equals("Alla")) {
+            sql += " AND projekt.status = '" + valtStatus + "'";
+        }
+
+        // Kör SQL-frågan
+        ArrayList<HashMap<String, String>> projektLista = idb.fetchRows(sql);
+
+        // Kontrollera om några projekt hittades
+        if (projektLista == null || projektLista.isEmpty()) {
+            TextAreaProjekt.setText("Inga projekt hittades för avdelningen: " + avdelning + " med status: " + valtStatus);
+            return;
+        }
+
+        // Bygg upp texten som ska visas i TextArea
+        StringBuilder resultat = new StringBuilder();
+        for (HashMap<String, String> projekt : projektLista) {
+            resultat.append("Projekt ID: ").append(projekt.get("pid")).append("\n");
+            resultat.append("Namn: ").append(projekt.get("namn")).append("\n");
+            resultat.append("Beskrivning: ").append(projekt.get("beskrivning")).append("\n");
+            resultat.append("Status: ").append(projekt.get("status")).append("\n");
+            resultat.append("Projektchef: ").append(projekt.get("projektchef")).append("\n");
+            resultat.append("----------------------------\n");
+        }
+
+        // Visa resultaten i TextArea
+        TextAreaProjekt.setText(resultat.toString());
+    } catch (InfException e) {
+        TextAreaProjekt.setText("Ett fel inträffade vid hämtning av projekt: " + e.getMessage());
+    } catch (Exception ex) {
+        TextAreaProjekt.setText("Ett oväntat fel inträffade: " + ex.getMessage());
     }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    /**
+    }//GEN-LAST:event_btnHämtaProjektActionPerformed
+ /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -348,17 +223,11 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
-
+    private javax.swing.JComboBox<String> ComboBoxVäljStatus;
+    private javax.swing.JTextArea TextAreaProjekt;
     private javax.swing.JButton btnHämtaProjekt;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea textAreaProjekt;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea1;
-
     // End of variables declaration//GEN-END:variables
 }
