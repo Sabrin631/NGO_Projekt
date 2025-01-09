@@ -23,10 +23,9 @@ public class SökHandläggare extends javax.swing.JFrame {
     public SökHandläggare(InfDB idb, String anvandareID) {
         initComponents();
         this.idb = idb;
-
         this.anvandareID=anvandareID;
-        this.anvandareID = anvandareID;
-        this.anvandareID = anvandareID;
+       
+
 
     }
 
