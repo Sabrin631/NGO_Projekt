@@ -12,12 +12,14 @@ import oru.inf.InfException;
  */
 public class ProjektLedarMeny extends javax.swing.JFrame {
      private InfDB idb;
+     private String anvandareID;
 
     /**
      * Creates new form ProjektLedarMeny
      */
-    public ProjektLedarMeny(InfDB idb) {
+    public ProjektLedarMeny(InfDB idb, String anvandareID) {
         this.idb =idb;
+        this.anvandareID = anvandareID;
         initComponents();
     }
 
