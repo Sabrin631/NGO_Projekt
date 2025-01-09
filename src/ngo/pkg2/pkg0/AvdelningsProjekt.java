@@ -5,10 +5,9 @@
 package ngo.pkg2.pkg0;
 import java.util.ArrayList;
 import java.util.HashMap;
-<<<<<<< Updated upstream
 import java.util.List;
-=======
->>>>>>> Stashed changes
+
+
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -43,7 +42,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-<<<<<<< Updated upstream
         textAreaProjekt = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         btnHämtaProjekt = new javax.swing.JButton();
@@ -51,7 +49,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 6));
-=======
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -59,7 +56,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 8));
->>>>>>> Stashed changes
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setText("Projekt på min avdelning");
@@ -68,22 +64,20 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(127, 127, 127))
-=======
+
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(158, 158, 158)
                 .addComponent(jLabel1)
                 .addContainerGap(202, Short.MAX_VALUE))
->>>>>>> Stashed changes
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< Updated upstream
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -99,7 +93,7 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         btnHämtaProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHämtaProjektActionPerformed(evt);
-=======
+
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -120,7 +114,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
->>>>>>> Stashed changes
             }
         });
 
@@ -129,7 +122,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< Updated upstream
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -155,7 +147,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnHämtaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
-=======
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -182,13 +173,11 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
->>>>>>> Stashed changes
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< Updated upstream
    private void hämtaProjekt(String valdStatus) {
         try {
             // Hämta avdelning baserat på användarens ID
@@ -230,7 +219,7 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
             hämtaProjekt(valdStatus); // Anropa metod för att hämta och visa projekten
         
     }//GEN-LAST:event_btnHämtaProjektActionPerformed
-=======
+
     private ArrayList<String[]> hamtaProjektAvdelning(String avdelningNamn, String status) {
     ArrayList<String[]> projektLista = new ArrayList<>();
     try {
@@ -304,7 +293,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
->>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments
@@ -342,19 +330,17 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< Updated upstream
+
     private javax.swing.JButton btnHämtaProjekt;
-=======
+
     private javax.swing.JButton jButton1;
->>>>>>> Stashed changes
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-<<<<<<< Updated upstream
     private javax.swing.JTextArea textAreaProjekt;
-=======
+
     private javax.swing.JTextArea jTextArea1;
->>>>>>> Stashed changes
+
     // End of variables declaration//GEN-END:variables
 }
