@@ -54,14 +54,12 @@ public class Inloggning extends javax.swing.JFrame {
         lblLösenord.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLösenord.setText("Lösenord");
 
-        txtEpost.setText("chen.wei@example.com");
         txtEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEpostActionPerformed(evt);
             }
         });
 
-        txtLösenord.setText("passwordabc");
         txtLösenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLösenordActionPerformed(evt);
@@ -77,6 +75,7 @@ public class Inloggning extends javax.swing.JFrame {
             }
         });
 
+        lblFelmeddelande.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         lblFelmeddelande.setForeground(new java.awt.Color(255, 0, 0));
         lblFelmeddelande.setText("Felaktig Epost eller Lösenord!");
 
