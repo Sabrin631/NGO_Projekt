@@ -10,6 +10,7 @@ import oru.inf.InfException;
  *
  * @author sabri
  */
+
 public class Validering extends javax.swing.JFrame {
     private InfDB idb;
 
@@ -22,6 +23,19 @@ public class Validering extends javax.swing.JFrame {
         initComponents();
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////
+    // Kontrollera om det inmatade ID:t är detsamma som det inloggade användar-ID:t
+    public boolean arRattID(String inmatatID, String inloggatID) {
+    if (inmatatID.equals(inloggatID)) {
+        return true;
+    } else {
+        JOptionPane.showMessageDialog(this, "Detta är inte ditt ID. Skriv in ditt korrekta ID och försök igen.", 
+                                      "Fel ID", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
+
+   /////////////////////////////////////////////////////////////////////////////////////// 
     //Första metoden kollar om ett namn finns i Databasen,
     //Man ska skicka in ett namn och få Ut om det finns ellr inte genom En boolean.
     
@@ -43,14 +57,30 @@ public class Validering extends javax.swing.JFrame {
         return finns;
     }
     
-    //Denna metod kollar om en Sträng är tom.
-    // 
-    public boolean arTom(String str) {
+    /////////////////////////////////////////////////////////////////////////////////////
+    public boolean finnsAnvandare(String id) {
+    boolean finns = false;
+    try {
+        // Kontrollera om användar-ID:t finns i databasen
+        String sqlFraga = "SELECT fornamn FROM anstallda WHERE aid LIKE '" + id + "';";
+        String resultat = idb.fetchSingle(sqlFraga);
+        if (resultat != null) {
+            finns = true;
+        }
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av användar-ID: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
+    return finns;
+}
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+  // Kontrollera om en sträng är tom
+public boolean arTom(String str) {
     return str == null || str.trim().isEmpty();
 }
 
-        
-    
+///////////////////////////////////////////////////////////////////////////////////////////
 
 
     /**
