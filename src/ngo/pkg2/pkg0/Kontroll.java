@@ -74,7 +74,7 @@ public class Kontroll extends javax.swing.JFrame {
 
         txtId.setColumns(20);
         txtId.setRows(5);
-        txtId.setText("\n\n\n\n\nAnge ditt AnställningID Här  .   .   .\n");
+        txtId.setText("\n\n\n\n\nAnge ditt anställningID här  .   .   .\n");
         jScrollPane1.setViewportView(txtId);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

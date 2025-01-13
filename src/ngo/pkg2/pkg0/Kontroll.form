@@ -115,7 +115,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="&#xa;&#xa;&#xa;&#xa;&#xa;Ange ditt Anst&#xe4;llningID H&#xe4;r  .   .   .&#xa;"/>
+            <Property name="text" type="java.lang.String" value="&#xa;&#xa;&#xa;&#xa;&#xa;Ange ditt anst&#xe4;llningID h&#xe4;r  .   .   .&#xa;"/>
           </Properties>
         </Component>
       </SubComponents>

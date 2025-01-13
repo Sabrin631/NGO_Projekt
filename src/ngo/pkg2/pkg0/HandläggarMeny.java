@@ -148,7 +148,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         });
 
         btnInfoOmProjekt.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        btnInfoOmProjekt.setText("Info om Projekt");
+        btnInfoOmProjekt.setText("ProjektLedare");
         btnInfoOmProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInfoOmProjektActionPerformed(evt);

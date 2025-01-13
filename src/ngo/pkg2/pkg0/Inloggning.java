@@ -23,7 +23,7 @@ public class Inloggning extends javax.swing.JFrame {
         this.anvandareID = anvandareID;
         initComponents();
         lblFelmeddelande.setVisible(false);   // Felmeddelandet är osynligt från början
-        btnGlomtLosenord.setVisible(false);  // Knappen "Glömt lösenord?" är osynlig från början
+        btnGlomtLosenord.setVisible(true);  // Knappen "Glömt lösenord?" är osynlig från början
     }
 
     /**

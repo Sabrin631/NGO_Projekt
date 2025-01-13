@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo.pkg2.pkg0;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -21,6 +22,8 @@ public class ÅterställaLösenord extends javax.swing.JFrame {
         this.idb = idb;
         this.Epost = Epost;
         initComponents();
+        lblFelLosenMatcharInte.setVisible(false);
+        lblFelLosenKanInteVaraTomt.setVisible(false);
     }
 
     /**
@@ -34,6 +37,13 @@ public class ÅterställaLösenord extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNyttLosen = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtBnyttLosen = new javax.swing.JTextField();
+        btnSpara = new javax.swing.JButton();
+        lblFelLosenMatcharInte = new javax.swing.JLabel();
+        lblFelLosenKanInteVaraTomt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,25 +69,115 @@ public class ÅterställaLösenord extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Nytt Lösenord");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Bekräfta Lösenord");
+
+        btnSpara.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSpara.setText("Spara");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
+
+        lblFelLosenMatcharInte.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblFelLosenMatcharInte.setForeground(new java.awt.Color(255, 0, 0));
+        lblFelLosenMatcharInte.setText("Lösenordet matchar inte!");
+
+        lblFelLosenKanInteVaraTomt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblFelLosenKanInteVaraTomt.setForeground(new java.awt.Color(255, 0, 0));
+        lblFelLosenKanInteVaraTomt.setText("Lösenordet kan inte vara tomt!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(212, 212, 212)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBnyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFelLosenKanInteVaraTomt)
+                    .addComponent(lblFelLosenMatcharInte, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
+                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(txtNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(txtBnyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFelLosenMatcharInte)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFelLosenKanInteVaraTomt)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        String nyttLosenord = txtNyttLosen.getText();
+        String bekräftaLosenord = txtBnyttLosen.getText();
+
+    // Göm felmeddelandena först
+    lblFelLosenMatcharInte.setVisible(false);
+    lblFelLosenKanInteVaraTomt.setVisible(false);
+
+    // Kontrollera att lösenorden inte är tomma
+    if (nyttLosenord.isEmpty() || bekräftaLosenord.isEmpty()) {
+        lblFelLosenKanInteVaraTomt.setVisible(true);  // Lösenordet får inte vara tomt
+    } 
+    // Kontrollera om lösenorden matchar
+    else if (!nyttLosenord.equals(bekräftaLosenord)) {
+        lblFelLosenMatcharInte.setVisible(true);  // Lösenorden matchar inte
+    } else {
+        // Om lösenorden är giltiga, uppdatera lösenordet i databasen
+        try {
+            String query = "UPDATE anstalld SET losenord = '" + nyttLosenord + "' WHERE epost = '" + Epost + "'";
+            idb.update(query);  // Kör SQL-frågan
+            JOptionPane.showMessageDialog(this, "Lösenordet har uppdaterats!");
+            this.setVisible(false); // Stänger fönstret
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(this, "Fel vid uppdatering av lösenord: " + e.getMessage());
+        }
+    }
+    }//GEN-LAST:event_btnSparaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,7 +215,14 @@ public class ÅterställaLösenord extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSpara;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFelLosenKanInteVaraTomt;
+    private javax.swing.JLabel lblFelLosenMatcharInte;
+    private javax.swing.JTextField txtBnyttLosen;
+    private javax.swing.JTextField txtNyttLosen;
     // End of variables declaration//GEN-END:variables
 }

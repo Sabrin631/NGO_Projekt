@@ -245,15 +245,6 @@ public class ÄndraPartnersProjektChef extends javax.swing.JFrame {
     String Branch = txtBranch.getText();
     String Stad = txtStad.getText();
 
-    // Kontrollera om PID redan existerar
-    String kontroll = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
-    String result = idb.fetchSingle(kontroll);
-    
-    if (result != null && Integer.parseInt(result) > 0) {
-        JOptionPane.showMessageDialog(this, "PID existerar redan i databasen!", "Fel", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
     // Kontrollera om alla obligatoriska fält är ifyllda
     if (pid.isEmpty() || namn.isEmpty() || Adress.isEmpty() || telefon.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);

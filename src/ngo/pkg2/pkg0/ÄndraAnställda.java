@@ -399,13 +399,7 @@ public class ÄndraAnställda extends javax.swing.JFrame {
             idb.insert(sql);
              JOptionPane.showMessageDialog(this, "Ny anställd lades till!");
          }
-         else
-         {
-             
-         }
-         
-
-             
+       
         // Visa felmeddelande om något går fel
         }catch(Exception ex){
                 JOptionPane.showMessageDialog(this, "Fel vid tillägg av anställd: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
