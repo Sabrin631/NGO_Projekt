@@ -15,6 +15,7 @@ import oru.inf.InfException;
 public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private Validering validering;
     
     /**
      * Creates new form ÄndraHållbarhetsmål
@@ -22,6 +23,7 @@ public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
     public ÄndraHållbarhetsmål(InfDB idb, String anvandareID) {
         this.idb = idb;
         this.anvandareID = anvandareID;
+        validering = new Validering(idb);
         initComponents();
     }
 
@@ -189,6 +191,12 @@ public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
             + "beskrivning = '" + beskrivning + "', "
             + "prioritet = '" + prioritet + "' "
             + "WHERE hid = '" + hid + "'";
+    
+    if(!validering.arRattPrioritet(prioritet)){
+                JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
+                "Fel prioritet", JOptionPane.ERROR_MESSAGE);
+            return;
+            }
 
     // Kör uppdateringsfrågan
     idb.update(updateQuery);
@@ -212,10 +220,16 @@ public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
             String beskrivning = txtBeskrivning.getText();
             String prioritet = txtPrioritet.getText();
             
-            if (hid.isEmpty() || namn.isEmpty() || målNummer.isEmpty() || beskrivning.isEmpty() || prioritet.isEmpty()) {
+            if (hid.isEmpty() || namn.isEmpty() || målNummer.isEmpty() || beskrivning.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
                }
+            if(!validering.arRattPrioritet(prioritet)){
+                JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
+                "Fel prioritet", JOptionPane.ERROR_MESSAGE);
+            return;
+            }
+            
             String sql = "INSERT INTO hallbarhetsmal (hid, Namn, Malnummer, Beskrivning, Prioritet) " +
                      "VALUES ('" + hid + "', '" + namn + "', '" + målNummer + "', '" + beskrivning + "', '" + prioritet + "')";
 

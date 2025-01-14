@@ -15,6 +15,7 @@ import oru.inf.InfException;
 public class ÄndraAvdelning extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private Validering validering;
 
     /**
      * Creates new form ÄndaAvdelning
@@ -22,6 +23,7 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
     public ÄndraAvdelning(InfDB idb, String anvandareID) {
         this.idb =idb;
         this.anvandareID =anvandareID;
+        validering = new Validering(idb);
         initComponents();
     }
 
@@ -248,17 +250,30 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
         String Chef = txtChef.getText();
         
         String Kontroll = "SELECT COUNT(*) FROM avdelning WHERE avdid = '" + AVDID + "'";
-        String result = idb.fetchSingle(Kontroll);
+        String resultat = idb.fetchSingle(Kontroll);
         
-        if (result != null && Integer.parseInt(result) > 0) {
+        if (resultat != null && Integer.parseInt(resultat) > 0) {
                JOptionPane.showMessageDialog(this, "AVDID existerar redan i databasen!", "Fel", JOptionPane.ERROR_MESSAGE);
            return;
                   }
        
-        if (Namn.isEmpty() || Beskrivning.isEmpty() || Epost.isEmpty() || Adress.isEmpty()) {
+        if (Namn.isEmpty() || Beskrivning.isEmpty() || Adress.isEmpty() || Stad.isEmpty() || Chef.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
                }
+        
+         // Validera e-postformat
+        if (!validering.arRattEpost(Epost)) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validera telefonnummer (exempel på format)
+        if (!validering.arRattTelefonnummer(Telefon)) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
          String sql;
                 sql = "INSERT INTO avdelning (avdid, namn, beskrivning, adress, epost, telefon, stad, chef) " +
                       "VALUES ('" + AVDID + "', '" + Namn + "', '" + Beskrivning + "', '" + Adress + "', '" + Epost + "', '" 
@@ -311,7 +326,7 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
 
         // Kontrollera att alla obligatoriska fält är ifyllda
         if (AVDID.isEmpty() || Namn.isEmpty() || Beskrivning.isEmpty() || Adress.isEmpty() || 
-            Epost.isEmpty() || Telefon.isEmpty() || Stad.isEmpty() || Chef.isEmpty()) {
+             Stad.isEmpty() || Chef.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -335,6 +350,16 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
                      "stad = '" + Stad + "', " +
                      "chef = '" + Chef + "' " +
                      "WHERE avdid = '" + AVDID + "'";
+        
+        // Validera e-post
+        if (!validering.arRattEpost(Epost)) {
+            return;  // Ogiltig e-postadress
+        }
+        
+        // Validera telefonnummer
+        if (!validering.arRattTelefonnummer(Telefon)) {
+            return;  // Ogiltigt telefonnummer
+        }
 
         // Kör uppdateringsfrågan
         idb.update(sql);
