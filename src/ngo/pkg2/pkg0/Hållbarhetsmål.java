@@ -3,10 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo.pkg2.pkg0;
+import java.util.ArrayList;
+import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.*;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,28 +26,46 @@ public class Hållbarhetsmål extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.anvandareID=anvandareID;
-
-        
         laddaHållbarhetsmål();
-    }
+}
     
-    private void laddaHållbarhetsmål(){
-        try {
-    
-            String query = "SELECT namn From hallbarhetsmal";
-            List<String> mål = idb.fetchColumn(query);
+    private void laddaHållbarhetsmål() {
+    try {
+        // SQL-fråga för att hämta alla kolumner
+        String query = "SELECT hid, namn, malnummer, beskrivning, prioritet FROM hallbarhetsmal";
+        
+        // Hämta alla rader från frågan
+        ArrayList<HashMap<String, String>> målRader = idb.fetchRows(query);
+        
+        if (målRader != null && !målRader.isEmpty()) {
+            // Skapa kolumnnamn för tabellen
+            String[] kolumnNamn = {"HID", "Namn", "Målnummer", "Beskrivning", "Prioritet"};
             
-            if (mål !=null) {
-                for (String målNamn:mål) {
-                    textAreaHållbarhetsmål.append(målNamn + "\n");
-                }
-            } else {
-                textAreaHållbarhetsmål.setText("Inga hallbarhetsmal hittades i databasen.");
+            // Skapa en 2D array för att lagra data som ska visas i tabellen
+            Object[][] data = new Object[målRader.size()][kolumnNamn.length];
+            
+            // Fyll data-arrayen med värden från databasen
+            for (int i = 0; i < målRader.size(); i++) {
+                HashMap<String, String> rad = målRader.get(i);
+                data[i][0] = rad.get("hid");
+                data[i][1] = rad.get("namn");
+                data[i][2] = rad.get("malnummer");
+                data[i][3] = rad.get("beskrivning");
+                data[i][4] = rad.get("prioritet");
             }
-        } catch (InfException ex){
-            JOptionPane.showMessageDialog(this, "Fel vid hämtning av hallbarhetsmalen: " + ex.getMessage());
+            
+            // Skapa en DefaultTableModel med data och kolumnnamn
+            DefaultTableModel model = new DefaultTableModel(data, kolumnNamn);
+            
+            // Sätt modellen på tabellen
+            tblHallbarhet.setModel(model);
+        } else {
+            JOptionPane.showMessageDialog(this, "Inga hållbarhetsmål hittades i databasen.");
         }
-        }
+    } catch (InfException ex) {
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av hållbarhetsmål: " + ex.getMessage());
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,20 +76,14 @@ public class Hållbarhetsmål extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaHållbarhetsmål = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblExit = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblHallbarhet = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        textAreaHållbarhetsmål.setColumns(20);
-        textAreaHållbarhetsmål.setRows(5);
-        jScrollPane1.setViewportView(textAreaHållbarhetsmål);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 430, 250));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 5));
 
@@ -80,16 +95,18 @@ public class Hållbarhetsmål extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                .addGap(62, 62, 62))
+                .addGap(121, 121, 121)
+                .addComponent(jLabel1)
+                .addContainerGap(220, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 430, 70));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 680, 70));
 
         lblExit.setText("Exit");
         lblExit.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +114,35 @@ public class Hållbarhetsmål extends javax.swing.JFrame {
                 lblExitActionPerformed(evt);
             }
         });
-        getContentPane().add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 413, 80, 40));
+        getContentPane().add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 80, 40));
+
+        tblHallbarhet.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "hid", "Namn", "Målnummer", "Beskrivning", "Prioritet"
+            }
+        ));
+        jScrollPane2.setViewportView(tblHallbarhet);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 670, 260));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,8 +199,8 @@ public class Hållbarhetsmål extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton lblExit;
-    private javax.swing.JTextArea textAreaHållbarhetsmål;
+    private javax.swing.JTable tblHallbarhet;
     // End of variables declaration//GEN-END:variables
 }
