@@ -15,6 +15,8 @@ import oru.inf.InfException;
 public class ÄndraPartners extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private Validering validering;
+
 
     /**
      * Creates new form ÄndraPartners
@@ -22,6 +24,7 @@ public class ÄndraPartners extends javax.swing.JFrame {
     public ÄndraPartners(InfDB idb, String anvandareID) {
         this.idb = idb;
         this.anvandareID = anvandareID;
+        validering = new Validering(idb);
         initComponents();
     }
 
@@ -340,10 +343,22 @@ public class ÄndraPartners extends javax.swing.JFrame {
            return;
                   }
        
-        if (pid.isEmpty() || namn.isEmpty() || Adress.isEmpty() || telefon.isEmpty()) {
+        if (pid.isEmpty() || namn.isEmpty() || Adress.isEmpty() || Branch.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
                }
+        
+        // Validera e-postformat
+        if (!validering.arRattEpost(kontaktEpost)) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validera telefonnummer (exempel på format)
+        if (!validering.arRattTelefonnummer(telefon)) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
          String sql;
                 sql = "INSERT INTO partner (pid, namn, kontaktperson, kontaktepost, telefon, adress, branch, stad) " +
       "VALUES ('" + pid + "', '" + namn + "', '" + kontaktPerson  + "', '" + kontaktEpost + "', '" + telefon + "', '" 
@@ -371,10 +386,10 @@ public class ÄndraPartners extends javax.swing.JFrame {
         }
 
         // Kontrollera om ID:t existerar i databasen
-        String checkQuery = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
-        String result = idb.fetchSingle(checkQuery);
+        String kontroll = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
+        String resultat = idb.fetchSingle(kontroll);
 
-        if (result == null || Integer.parseInt(result) == 0) {
+        if (resultat == null || Integer.parseInt(resultat) == 0) {
             JOptionPane.showMessageDialog(this, "Ingen partner hittades med angivet pid.", "Fel", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -408,16 +423,16 @@ public class ÄndraPartners extends javax.swing.JFrame {
     String stad = txtStad.getText();
 
     // Kontrollera att alla obligatoriska fält är ifyllda
-    if (pid.isEmpty() || namn.isEmpty() || kontaktPerson.isEmpty() || kontaktEpost.isEmpty()) {
+    if (pid.isEmpty() || namn.isEmpty() || branch.isEmpty() || kontaktPerson.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     // Kontrollera om posten med det angivna PID finns
-    String checkQuery = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
-    String result = idb.fetchSingle(checkQuery);
+    String kontroll = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
+    String resultat = idb.fetchSingle(kontroll);
 
-    if (result == null || Integer.parseInt(result) == 0) {
+    if (resultat == null || Integer.parseInt(resultat) == 0) {
         JOptionPane.showMessageDialog(this, "Ingen partner hittades med angivet PID. Kan inte uppdatera!", "Fel", JOptionPane.ERROR_MESSAGE);
         return;
     }
@@ -433,6 +448,18 @@ public class ÄndraPartners extends javax.swing.JFrame {
             + "stad = '" + stad + "' "
             + "WHERE pid = '" + pid + "'";
 
+    // Validera telefonnummer (exempel på format)
+        if (!validering.arRattTelefonnummer(telefon)) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }    
+            
+    // Validera e-postformat
+        if (!validering.arRattEpost(kontaktEpost)) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    
     // Utför uppdateringen
     idb.update(sql);
 

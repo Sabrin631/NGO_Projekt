@@ -56,14 +56,14 @@ public class Inloggning extends javax.swing.JFrame {
         lblLösenord.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLösenord.setText("Lösenord");
 
-        txtEpost.setText("chen.wei@example.com");
+        txtEpost.setText("maria.g@example.com");
         txtEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEpostActionPerformed(evt);
             }
         });
 
-        txtLösenord.setText("passwordabc");
+        txtLösenord.setText("password123");
         txtLösenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLösenordActionPerformed(evt);

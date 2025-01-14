@@ -15,12 +15,14 @@ import oru.inf.InfException;
 public class ÄndraProjekt extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private Validering validering;
     /**
      * Creates new form ÄndraProjekt
      */
     public ÄndraProjekt(InfDB idb, String anvandareID) {
        this.anvandareID = anvandareID;
        this.idb =idb;
+       validering = new Validering(idb);
        initComponents();
     }
 
@@ -324,10 +326,22 @@ public class ÄndraProjekt extends javax.swing.JFrame {
            return;
                   }
        
-        if (pid.isEmpty() || projektnamn.isEmpty() || Status.isEmpty() || Kostnad.isEmpty()) {
+        if (pid.isEmpty() || projektnamn.isEmpty() || beskrivning.isEmpty() || Kostnad.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
                }
+        
+        if(!validering.arRattPrioritet(Prioritet)){
+             JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
+             "Fel prioritet", JOptionPane.ERROR_MESSAGE);
+             return;
+               }
+        if(!validering.arRattStatus(Status)){
+            JOptionPane.showMessageDialog(this, "Ogiltig status. Vänligen välj ett av följande: Pågående, Avslutad eller Planerad.", 
+            "Fel status", JOptionPane.ERROR_MESSAGE);
+             return;
+                    }
+           
          String sql;
                 sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, Status, prioritet, projektchef, land) " +
       "VALUES ('" + pid + "', '" + projektnamn + "', '" + beskrivning + "', '" + Startdatum + "', '" + Slutdatum + "', '" 
@@ -392,7 +406,6 @@ public class ÄndraProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnÅterställActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÅterställActionPerformed
-   
         txtpid.setText("");
         txtpid.setText("");
         txtProjektnamn.setText("");
@@ -448,6 +461,18 @@ public class ÄndraProjekt extends javax.swing.JFrame {
             + "projektchef = '" + projektChef + "', "
             + "land = '" + land + "' "
             + "WHERE pid = '" + pid + "'";
+    
+    if(!validering.arRattPrioritet(prioritet)){
+             JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
+             "Fel prioritet", JOptionPane.ERROR_MESSAGE);
+             return;
+               }
+    
+    if(!validering.arRattStatus(status)){
+            JOptionPane.showMessageDialog(this, "Ogiltig status. Vänligen välj ett av följande: Pågående, Avslutad eller Planerad.", 
+            "Fel status", JOptionPane.ERROR_MESSAGE);
+             return;
+                }
 
     // Utför uppdateringen
     idb.update(sql);

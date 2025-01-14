@@ -174,7 +174,8 @@ public class ÄndraAnställda extends javax.swing.JFrame {
             }
         });
 
-        txtLösenord.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtLösenord.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
+        txtLösenord.setText("Ett Slumpat lösenord skapas Automatiskt");
         txtLösenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLösenordActionPerformed(evt);
@@ -383,9 +384,9 @@ public class ÄndraAnställda extends javax.swing.JFrame {
     return losen.toString();
     }
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
-        // Hämta det som står idassa textfält
-        try{
-        String aid =txtAid.getText();
+   // Hämta det som står i fälten
+    try {
+        String aid = txtAid.getText();
         String fornamn = txtFörnamn.getText();
         String efternamn = txtEfternamn.getText();
         String adress = txtAdress.getText();
@@ -393,34 +394,47 @@ public class ÄndraAnställda extends javax.swing.JFrame {
         String telefon = txtTelefon.getText();
         String anstallningsdatum = txtDatum.getText();
         String avdelning = txtAvdelning.getText();
-        
-        // Kontrollera att dessa fält inte är tomma
- 
-         if (fornamn.isEmpty() || efternamn.isEmpty() || epost.isEmpty() || telefon.isEmpty()) {
+
+        // Kontrollera att obligatoriska fält inte är tomma
+        if (fornamn.isEmpty() || efternamn.isEmpty() || epost.isEmpty() || telefon.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
-               }
-         
-         if(!validering.finnsUsernameiDB(aid))
-         {
-             // Generera ett slumpmässigt lösenord
-            String losenord = genereraLosen(10);
-            // Skapa sql Fråga för att Lägga till Nya anställda
-            String sql;
-            sql = "INSERT INTO anstalld (aid, Fornamn, Efternamn, Adress, Epost, Telefon, Anstallningsdatum, Losenord, Avdelning) " +
-                    "VALUES ('" + aid + "','" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "',"
-                   +" '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
-         
-         // Lägg till den nya anställda i databasen
-            idb.insert(sql);
-             JOptionPane.showMessageDialog(this, "Ny anställd lades till!");
-         }
-       
-        // Visa felmeddelande om något går fel
-        }catch(Exception ex){
-                JOptionPane.showMessageDialog(this, "Fel vid tillägg av anställd: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
         }
-                
+
+        // Validera e-postformat
+        if (!validering.arRattEpost(epost)) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validera telefonnummer (exempel på format)
+        if (!validering.arRattTelefonnummer(telefon)) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Kontrollera om användaren finns i databasen
+        if (validering.finnsUsernameiDB(aid)) {
+            JOptionPane.showMessageDialog(this, "Användaren finns redan!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Generera ett slumpmässigt lösenord
+        String losenord = genereraLosen(10);
+
+        // Skapa SQL-fråga för att lägga till ny anställd
+        String sql = "INSERT INTO anstalld (aid, Fornamn, Efternamn, Adress, Epost, Telefon, Anstallningsdatum, Losenord, Avdelning) " +
+                "VALUES ('" + aid + "','" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "',"
+                + " '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
+
+        // Lägg till den nya anställda i databasen
+        idb.insert(sql);
+        JOptionPane.showMessageDialog(this, "Ny anställd lades till!");
+
+    } catch (Exception ex) {
+        // Visa felmeddelande om något går fel
+        JOptionPane.showMessageDialog(this, "Fel vid tillägg av anställd: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }    
     }//GEN-LAST:event_btnLäggTillActionPerformed
    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -487,7 +501,7 @@ public class ÄndraAnställda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
-
+  
         try {
         // Hämta värden från textfälten
         String aid = txtAid.getText();
@@ -505,9 +519,30 @@ public class ÄndraAnställda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vänligen ange ett giltigt ID för att uppdatera.", "Fel", JOptionPane.WARNING_MESSAGE);
             return;
         }
+
+        // Validera förnamn och efternamn
+        if (validering.arTom(fornamn) || validering.arTom(efternamn)|| validering.arTom(avdelning)) {
+            JOptionPane.showMessageDialog(this, "Förnamn, efternamn och avdelning får inte vara tomma.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validera e-post
+        if (!validering.arRattEpost(epost)) {
+            return;  // Ogiltig e-postadress
+        }
+
+        // Validera telefonnummer
+        if (!validering.arRattTelefonnummer(telefon)) {
+            return;  // Ogiltigt telefonnummer
+        }
+
+        // Validera anställningsdatum
+        if (!validering.arRattDatum(anstallningsdatum)) {
+            return;  // Ogiltigt datumformat
+        }
         
         // Kontrollera om ID:t existerar i databasen
-        String Kontroll = "SELECT COUNT(*) FROM anstalld WHERE aid = '" + aid + "'";
+        String Kontroll = "SELECT COUNT(*) FROM anstalld WHERE aid = '" + aid + "';";
         String result = idb.fetchSingle(Kontroll);
 
         if (result == null || Integer.parseInt(result) == 0) {
@@ -525,7 +560,7 @@ public class ÄndraAnställda extends javax.swing.JFrame {
                 + "Anstallningsdatum = '" + anstallningsdatum + "', "
                 + "Losenord = '" + losenord + "', "
                 + "Avdelning = '" + avdelning + "' "
-                + "WHERE aid = '" + aid + "'";
+                + "WHERE aid = '" + aid + "';";
 
         // Kör uppdateringsfrågan
         idb.update(updateQuery);

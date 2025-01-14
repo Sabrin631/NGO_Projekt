@@ -6,6 +6,10 @@ package ngo.pkg2.pkg0;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author sabri
@@ -23,7 +27,7 @@ public class Validering extends javax.swing.JFrame {
         initComponents();
     }
     
-    //////////////////////////////////////////////////////////////////////////////////////
+    //--------------------------------------------------------------------------
     // Kontrollera om det inmatade ID:t är detsamma som det inloggade användar-ID:t
     public boolean arRattID(String inmatatID, String inloggatID) {
     if (inmatatID.equals(inloggatID)) {
@@ -34,11 +38,8 @@ public class Validering extends javax.swing.JFrame {
         return false;
     }
 }
-
-   /////////////////////////////////////////////////////////////////////////////////////// 
-    //Första metoden kollar om ett namn finns i Databasen,
-    //Man ska skicka in ett namn och få Ut om det finns ellr inte genom En boolean.
-    
+   //---------------------------------------------------------------------------
+    //Metoden kollar om Ett namn Finns i Databasen genom att skicka in det namnet som
     public boolean finnsUsernameiDB(String id) {
         boolean finns = false;
         try
@@ -57,7 +58,7 @@ public class Validering extends javax.swing.JFrame {
         return finns;
     }
     
-    /////////////////////////////////////////////////////////////////////////////////////
+    //--------------------------------------------------------------------------
     public boolean finnsAnvandare(String id) {
     boolean finns = false;
     try {
@@ -73,16 +74,108 @@ public class Validering extends javax.swing.JFrame {
     return finns;
 }
     
-    //////////////////////////////////////////////////////////////////////////////////////
+    //--------------------------------------------------------------------------
+    
     
   // Kontrollera om en sträng är tom
-public boolean arTom(String str) {
+    public boolean arTom(String str) {
     return str == null || str.trim().isEmpty();
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+   //---------------------------------------------------------------------------
 
+    public boolean arRattEpost(String epost) {
+    // Regex för att validera e-postadress
+      String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+      Pattern pattern = Pattern.compile(regex);
+      Matcher matcher = pattern.matcher(epost);
+    
+    if (matcher.matches()) {
+        return true;
+    } else {
+        JOptionPane.showMessageDialog(this, "E-postadressen är inte korrekt formaterad. Vänligen ange en giltig e-postadress.", 
+                                      "Fel e-post", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
 
+   //---------------------------------------------------------------------------  
+
+   public boolean arRattTelefonnummer(String telefonnummer) {
+    // Regex för att validera telefonnummer som endast innehåller siffror och är mellan 8 och 15 siffror lång
+    String regex = "^[0-9]{8,15}$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(telefonnummer);
+    
+    if (matcher.matches()) {
+        return true;
+    } else {
+        JOptionPane.showMessageDialog(this, "Telefonnumret får endast innehålla siffror och vara mellan 8 och 15 siffror lång.", 
+                                      "Fel telefonnummer", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
+
+    //--------------------------------------------------------------------------
+    
+    public boolean arRattStatus(String status) {
+    // Lista över godkända statusvärden
+    String[] godkandaStatus = {"Pågående", "Avslutad", "Planerad"};
+    
+    // Kontrollera om den inmatade statusen finns i listan
+    for (String godkandStatus : godkandaStatus) {
+        if (godkandStatus.equalsIgnoreCase(status)) {
+            return true;  // Statusen är giltig
+        }
+    }
+    
+    // Om statusen inte är giltig, visa ett felmeddelande
+    JOptionPane.showMessageDialog(this, "Ogiltig status. Vänligen välj ett av följande: Pågående, Avslutad eller Planerad.", 
+                                  "Fel status", JOptionPane.ERROR_MESSAGE);
+    return false;
+}
+    //--------------------------------------------------------------------------
+    
+    public boolean arRattPrioritet(String prioritet) {
+    // Lista över godkända prioritetvärden
+    String[] godkandaPrioritet = {"Hög", "Medel", "Låg"};
+    
+    // Kontrollera om den inmatade prioriteten finns i listan
+    for (String godkandPrioritet : godkandaPrioritet) {
+        if (godkandPrioritet.equalsIgnoreCase(prioritet)) {
+            return true;  // Prioriteten är giltig
+        }
+    }
+    
+    
+    // Om prioriteten inte är giltig, visa ett felmeddelande
+    JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
+                                  "Fel prioritet", JOptionPane.ERROR_MESSAGE);
+    return false;
+}
+
+    //--------------------------------------------------------------------------
+    
+    public boolean arRattDatum(String datum) {
+    // Formatet som datumet ska vara i (yyyy-MM-dd)
+    String format = "yyyy-MM-dd";
+    
+    // Skapa en SimpleDateFormat-instans med det specifika formatet
+    SimpleDateFormat sdf = new SimpleDateFormat(format);
+    sdf.setLenient(false);  // Sätt till false för att strikt kontrollera datumet
+    
+    try {
+        // Försök att parsa datumet
+        sdf.parse(datum);
+        return true;  // Om det lyckas, så är datumet giltigt
+    } catch (ParseException e) {
+        // Om det inte lyckas, är datumet ogiltigt
+        JOptionPane.showMessageDialog(this, "Ogiltigt datumformat. Vänligen använd formatet yyyy-MM-dd.", 
+                                      "Fel datum", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
+    //--------------------------------------------------------------------------
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

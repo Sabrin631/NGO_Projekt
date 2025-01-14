@@ -287,10 +287,10 @@ public class ÄndraLänder extends javax.swing.JFrame {
         String PolitiskStruktur = txtPolitiskStruktur.getText();
         String Ekonomi = txtEkonomi.getText();
         
-        String checkQuery = "SELECT COUNT(*) FROM land WHERE lid = '" + Lid + "'";
-        String result = idb.fetchSingle(checkQuery);
+        String kontroll = "SELECT COUNT(*) FROM land WHERE lid = '" + Lid + "'";
+        String resultat = idb.fetchSingle(kontroll);
         
-        if (result != null && Integer.parseInt(result) > 0) {
+        if (resultat != null && Integer.parseInt(resultat) > 0) {
                JOptionPane.showMessageDialog(this, "Lid existerar redan i databasen!", "Fel", JOptionPane.ERROR_MESSAGE);
            return;
                   }
