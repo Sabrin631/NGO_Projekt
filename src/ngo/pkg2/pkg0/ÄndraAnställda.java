@@ -6,8 +6,7 @@ package ngo.pkg2.pkg0;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-import java.sql.PreparedStatement;
-import javax.swing.JFrame;
+import java.security.SecureRandom;
 
 /**
  *
@@ -16,14 +15,16 @@ import javax.swing.JFrame;
 public class ÄndraAnställda extends javax.swing.JFrame {
     private InfDB idb;
     private Validering validering;
+    private String anvandareID;
 
 
     /**
      * Creates new form ÄndraAnställda
      */
-    public ÄndraAnställda(InfDB idb) {
+    public ÄndraAnställda(InfDB idb,String anvandareID) {
         this.idb =idb;
         validering = new Validering(idb);
+        this.anvandareID = anvandareID;
         initComponents();
     }
 
@@ -367,6 +368,20 @@ public class ÄndraAnställda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private String genereraLosen(int langd) {
+    // Definiera tecken som kan användas i lösenordet
+    String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=<>?";
+    SecureRandom random = new SecureRandom();
+    StringBuilder losen = new StringBuilder();
+
+    // Generera lösenord
+    for (int i = 0; i < langd; i++) {
+        int index = random.nextInt(tecken.length());
+        losen.append(tecken.charAt(index));
+    }
+
+    return losen.toString();
+    }
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
         // Hämta det som står idassa textfält
         try{
@@ -377,7 +392,6 @@ public class ÄndraAnställda extends javax.swing.JFrame {
         String epost = txtEpost.getText();
         String telefon = txtTelefon.getText();
         String anstallningsdatum = txtDatum.getText();
-        String losenord = txtLösenord.getText();
         String avdelning = txtAvdelning.getText();
         
         // Kontrollera att dessa fält inte är tomma
@@ -389,6 +403,8 @@ public class ÄndraAnställda extends javax.swing.JFrame {
          
          if(!validering.finnsUsernameiDB(aid))
          {
+             // Generera ett slumpmässigt lösenord
+            String losenord = genereraLosen(10);
             // Skapa sql Fråga för att Lägga till Nya anställda
             String sql;
             sql = "INSERT INTO anstalld (aid, Fornamn, Efternamn, Adress, Epost, Telefon, Anstallningsdatum, Losenord, Avdelning) " +
@@ -406,15 +422,19 @@ public class ÄndraAnställda extends javax.swing.JFrame {
         }
                 
     }//GEN-LAST:event_btnLäggTillActionPerformed
-    private JFrame frame;
+   
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        frame = new JFrame ("Exit");
-         if(JOptionPane.showConfirmDialog(frame,"Bekräfta om du vill avsluta","Information om anställda",
-                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-         {
-             System.exit(0);
-         }
+        int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new AdminMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnÅterställActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÅterställActionPerformed

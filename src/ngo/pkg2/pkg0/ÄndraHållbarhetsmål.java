@@ -14,12 +14,14 @@ import oru.inf.InfException;
  */
 public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
     
     /**
      * Creates new form ÄndraHållbarhetsmål
      */
-    public ÄndraHållbarhetsmål(InfDB idb) {
+    public ÄndraHållbarhetsmål(InfDB idb, String anvandareID) {
         this.idb = idb;
+        this.anvandareID = anvandareID;
         initComponents();
     }
 
@@ -266,14 +268,19 @@ public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnTaBortActionPerformed
 
-    private JFrame frame;
+   
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-         frame = new JFrame ("Exit");
-         if(JOptionPane.showConfirmDialog(frame,"Bekräfta om du vill avsluta","Information om anställda",
-                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-         {
-             System.exit(0);
-         }
+         int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new AdminMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnÅterställActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÅterställActionPerformed

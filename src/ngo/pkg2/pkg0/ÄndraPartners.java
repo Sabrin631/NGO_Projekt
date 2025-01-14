@@ -14,14 +14,15 @@ import oru.inf.InfException;
  */
 public class ÄndraPartners extends javax.swing.JFrame {
     private InfDB idb;
-    private JFrame frame;
+    private String anvandareID;
 
     /**
      * Creates new form ÄndraPartners
      */
-    public ÄndraPartners(InfDB idb) {
-        initComponents();
+    public ÄndraPartners(InfDB idb, String anvandareID) {
         this.idb = idb;
+        this.anvandareID = anvandareID;
+        initComponents();
     }
 
     /**
@@ -294,13 +295,17 @@ public class ÄndraPartners extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        frame = new JFrame ("Exit");
-         if(JOptionPane.showConfirmDialog(frame,"Bekräfta om du vill avsluta","Information om anställda",
-                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-         {
-             System.exit(0);
-         }
+         int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new AdminMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnÅterställActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÅterställActionPerformed

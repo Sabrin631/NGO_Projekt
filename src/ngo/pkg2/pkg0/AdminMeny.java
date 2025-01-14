@@ -252,35 +252,35 @@ public class AdminMeny extends javax.swing.JFrame {
 
     private void btnAvdelningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvdelningarActionPerformed
         // TODO add your handling code here:
-         new ÄndraAvdelning(idb).setVisible(true);
+         new ÄndraAvdelning(idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAvdelningarActionPerformed
 
     private void btnAnställdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnställdaActionPerformed
-        new ÄndraAnställda(idb).setVisible(true);
+        new ÄndraAnställda(idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAnställdaActionPerformed
 
     private void btnProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektActionPerformed
         // TODO add your handling code here:
-        new ÄndraProjekt(idb).setVisible(true);
+        new ÄndraProjekt(idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnProjektActionPerformed
 
     private void btnPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartnersActionPerformed
         // TODO add your handling code here:
-        new ÄndraPartners(idb).setVisible(true);
+        new ÄndraPartners(idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnPartnersActionPerformed
 
     private void btnLänderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLänderActionPerformed
         // TODO add your handling code here:
-        new ÄndraLänder(idb).setVisible(true);
+        new ÄndraLänder(idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLänderActionPerformed
 
     private void btnHallbarhetsmalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHallbarhetsmalActionPerformed
-        new ÄndraHållbarhetsmål (idb).setVisible(true);
+        new ÄndraHållbarhetsmål (idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnHallbarhetsmalActionPerformed
 
