@@ -115,14 +115,18 @@ public class SummeraKostnader extends javax.swing.JFrame {
         double totalKostnad = hamtaTotalKostnadForAnvandare(anvandareID);
         txtTotalKostnad.setText("Totalkostnad: " + totalKostnad);
     }//GEN-LAST:event_btnVisaStatistikActionPerformed
-    private JFrame frame;
+   
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        frame = new JFrame ("Exit");
-         if(JOptionPane.showConfirmDialog(frame,"Bekräfta om du vill avsluta","Information om anställda",
-                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-         {
-             System.exit(0);
-         }
+        int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+        new infoOmProjekt(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**

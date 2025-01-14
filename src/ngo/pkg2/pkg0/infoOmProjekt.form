@@ -122,6 +122,11 @@
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lblHandläggarmeny" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="381" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -132,7 +137,9 @@
                       <Component id="btnÄndraHandläggare" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="btnÄndraProjekt" alignment="3" min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblHandläggarmeny" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSummeraKostnader" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="btnÄndraPartners" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
@@ -185,6 +192,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn&#xc4;ndraPartnersActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="lblHandl&#xe4;ggarmeny">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Handl&#xe4;ggarMeny"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lblHandl&#xe4;ggarmenyActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

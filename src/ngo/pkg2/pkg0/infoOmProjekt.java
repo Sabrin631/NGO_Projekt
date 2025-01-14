@@ -42,6 +42,7 @@ public class infoOmProjekt extends javax.swing.JFrame {
         btnSummeraKostnader = new javax.swing.JButton();
         btnÄndraHandläggare = new javax.swing.JButton();
         btnÄndraPartners = new javax.swing.JButton();
+        lblHandläggarmeny = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,6 +115,13 @@ public class infoOmProjekt extends javax.swing.JFrame {
             }
         });
 
+        lblHandläggarmeny.setText("HandläggarMeny");
+        lblHandläggarmeny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblHandläggarmenyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -131,6 +139,10 @@ public class infoOmProjekt extends javax.swing.JFrame {
                         .addComponent(btnÄndraHandläggare, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addGap(41, 41, 41))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblHandläggarmeny)
+                .addGap(381, 381, 381))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +151,9 @@ public class infoOmProjekt extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnÄndraHandläggare, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnÄndraProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblHandläggarmeny)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSummeraKostnader, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnÄndraPartners, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -170,6 +184,20 @@ public class infoOmProjekt extends javax.swing.JFrame {
         new ÄndraProjektProjektChef (idb, anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnÄndraProjektActionPerformed
+
+    private void lblHandläggarmenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblHandläggarmenyActionPerformed
+         int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new HandläggarMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_lblHandläggarmenyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,6 +243,7 @@ public class infoOmProjekt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton lblHandläggarmeny;
     // End of variables declaration//GEN-END:variables
 }
 
