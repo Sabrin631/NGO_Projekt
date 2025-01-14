@@ -193,8 +193,6 @@ public class ÄndraHållbarhetsmål extends javax.swing.JFrame {
             + "WHERE hid = '" + hid + "'";
     
     if(!validering.arRattPrioritet(prioritet)){
-                JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
-                "Fel prioritet", JOptionPane.ERROR_MESSAGE);
             return;
             }
 

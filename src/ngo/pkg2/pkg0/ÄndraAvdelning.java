@@ -264,13 +264,11 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
         
          // Validera e-postformat
         if (!validering.arRattEpost(Epost)) {
-            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         // Validera telefonnummer (exempel på format)
         if (!validering.arRattTelefonnummer(Telefon)) {
-            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
 

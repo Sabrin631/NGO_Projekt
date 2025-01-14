@@ -332,13 +332,9 @@ public class ÄndraProjekt extends javax.swing.JFrame {
                }
         
         if(!validering.arRattPrioritet(Prioritet)){
-             JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
-             "Fel prioritet", JOptionPane.ERROR_MESSAGE);
              return;
                }
         if(!validering.arRattStatus(Status)){
-            JOptionPane.showMessageDialog(this, "Ogiltig status. Vänligen välj ett av följande: Pågående, Avslutad eller Planerad.", 
-            "Fel status", JOptionPane.ERROR_MESSAGE);
              return;
                     }
            
@@ -463,14 +459,10 @@ public class ÄndraProjekt extends javax.swing.JFrame {
             + "WHERE pid = '" + pid + "'";
     
     if(!validering.arRattPrioritet(prioritet)){
-             JOptionPane.showMessageDialog(this, "Ogiltig prioritet. Vänligen välj ett av följande: Hög, Medel eller Låg.", 
-             "Fel prioritet", JOptionPane.ERROR_MESSAGE);
              return;
                }
     
     if(!validering.arRattStatus(status)){
-            JOptionPane.showMessageDialog(this, "Ogiltig status. Vänligen välj ett av följande: Pågående, Avslutad eller Planerad.", 
-            "Fel status", JOptionPane.ERROR_MESSAGE);
              return;
                 }
 

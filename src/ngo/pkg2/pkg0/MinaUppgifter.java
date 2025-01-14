@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class MinaUppgifter extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private Validering validering;
 
     /**
      * Creates new form MinaUppgifter
@@ -23,6 +24,7 @@ public class MinaUppgifter extends javax.swing.JFrame {
     public MinaUppgifter(InfDB idb, String anvandareID) {
         this.idb = idb;
         this.anvandareID = anvandareID;
+        validering = new Validering(idb);
         initComponents();
         
 
@@ -302,6 +304,18 @@ public class MinaUppgifter extends javax.swing.JFrame {
                      "epost = '" + nyEpost + "', " +
                      "telefon = '" + nyTelefon + "' " +
                      "WHERE aid = '" + anvandareID + "'";
+        if(nyttFornamn.isEmpty() || nyttEfternamn.isEmpty()){
+            
+        }
+        // validera Epost
+        if(!validering.arRattEpost(nyEpost)){
+            return;    
+        }
+        
+        // validera Telefonnummer
+        if(!validering.arRattTelefonnummer(nyTelefon)){
+            return;
+        }
 
         // Kör SQL-frågan
         idb.update(sql);

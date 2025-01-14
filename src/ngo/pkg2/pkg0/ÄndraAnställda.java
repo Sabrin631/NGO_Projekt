@@ -409,13 +409,11 @@ public class ÄndraAnställda extends javax.swing.JFrame {
 
         // Validera telefonnummer (exempel på format)
         if (!validering.arRattTelefonnummer(telefon)) {
-            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Kontrollera om användaren finns i databasen
         if (validering.finnsUsernameiDB(aid)) {
-            JOptionPane.showMessageDialog(this, "Användaren finns redan!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
