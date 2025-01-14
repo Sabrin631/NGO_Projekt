@@ -14,13 +14,15 @@ import java.util.List;
  */
 public class SökProjekt extends javax.swing.JFrame {
     private InfDB idb;
+    private String anvandareID;
 
     /**
      * Creates new form SökProjekt
      */
-    public SökProjekt(InfDB idb) {
-        initComponents();
-        this.idb = idb;
+    public SökProjekt(InfDB idb, String anvandareID) {
+         this.idb = idb;
+         this.anvandareID = anvandareID;
+         initComponents();
     }
     
     private void sökProjekt() {
@@ -69,15 +71,13 @@ public class SökProjekt extends javax.swing.JFrame {
         textAreaResultat = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lblExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textFieldStartDatum.setText("startdatum");
-        getContentPane().add(textFieldStartDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 209, 158, 85));
 
         textFieldSlutDatum.setText("Slutdatum");
-        getContentPane().add(textFieldSlutDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 351, 144, 74));
 
         sökKnapp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         sökKnapp.setText("Sök");
@@ -86,19 +86,69 @@ public class SökProjekt extends javax.swing.JFrame {
                 sökKnappActionPerformed(evt);
             }
         });
-        getContentPane().add(sökKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 97, 92, 46));
 
         textAreaResultat.setColumns(20);
         textAreaResultat.setRows(5);
         jScrollPane1.setViewportView(textAreaResultat);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 196, -1, 302));
-
         jLabel1.setText("(ÅÅÅÅ-MM-DD)");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 150, -1));
 
         jLabel2.setText("(ÅÅÅÅ-MM-DD)");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 130, -1));
+
+        lblExit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblExit.setText("Exit");
+        lblExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblExitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblExit, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(482, 482, 482)
+                            .addComponent(sökKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(124, 124, 124)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textFieldStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textFieldSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(48, 48, 48))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(lblExit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sökKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(3, 3, 3)
+                        .addComponent(textFieldStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel2)
+                        .addGap(5, 5, 5)
+                        .addComponent(textFieldSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,6 +157,20 @@ public class SökProjekt extends javax.swing.JFrame {
 
         sökProjekt();
     }//GEN-LAST:event_sökKnappActionPerformed
+
+    private void lblExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblExitActionPerformed
+        int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new HandläggarMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_lblExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +211,7 @@ public class SökProjekt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lblExit;
     private javax.swing.JButton sökKnapp;
     private javax.swing.JTextArea textAreaResultat;
     private javax.swing.JTextField textFieldSlutDatum;

@@ -43,6 +43,7 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextAreaProjekt = new javax.swing.JTextArea();
+        lblExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,6 +88,14 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TextAreaProjekt);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 470, 300));
+
+        lblExit.setText("Exit");
+        lblExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 333, 140, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,6 +196,20 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
         TextAreaProjekt.setText("Ett oväntat fel inträffade: " + ex.getMessage());
     }
     }//GEN-LAST:event_btnHämtaProjektActionPerformed
+
+    private void lblExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblExitActionPerformed
+        int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new HandläggarMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_lblExitActionPerformed
  /**
      * @param args the command line arguments
      */
@@ -229,5 +252,6 @@ public class AvdelningsProjekt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lblExit;
     // End of variables declaration//GEN-END:variables
 }

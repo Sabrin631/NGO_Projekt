@@ -61,6 +61,7 @@ public class MinaUppgifter extends javax.swing.JFrame {
         txtDatum = new javax.swing.JTextField();
         brnÄndraUppgifter = new javax.swing.JButton();
         btnHämta = new javax.swing.JButton();
+        lblExit = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel10.setText("Ändra mina Uppgifter");
@@ -158,6 +159,13 @@ public class MinaUppgifter extends javax.swing.JFrame {
             }
         });
 
+        lblExit.setText("Exit");
+        lblExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -205,7 +213,8 @@ public class MinaUppgifter extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(brnÄndraUppgifter, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(btnHämta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHämta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
@@ -240,15 +249,21 @@ public class MinaUppgifter extends javax.swing.JFrame {
                             .addComponent(txtFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(lblEfternamn)
-                        .addGap(26, 26, 26)
-                        .addComponent(lblAdress)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblEpost)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblTelefon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                        .addComponent(lblDatum)
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(lblAdress)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblEpost)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblTelefon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addComponent(lblDatum)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(lblExit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblLösenord)
@@ -331,6 +346,20 @@ public class MinaUppgifter extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnHämtaActionPerformed
 
+    private void lblExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblExitActionPerformed
+        int svar = JOptionPane.showConfirmDialog(this, 
+        "Är du säker på att du vill gå tillbaka till menyn?", 
+        "Bekräfta", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    
+    if (svar == JOptionPane.YES_OPTION) {
+       
+        new HandläggarMeny(idb,anvandareID).setVisible(true);
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_lblExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,6 +407,7 @@ public class MinaUppgifter extends javax.swing.JFrame {
     private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblEfternamn;
     private javax.swing.JLabel lblEpost;
+    private javax.swing.JButton lblExit;
     private javax.swing.JLabel lblFornamn;
     private javax.swing.JLabel lblLösenord;
     private javax.swing.JLabel lblTelefon;

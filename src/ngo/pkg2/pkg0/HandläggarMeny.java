@@ -14,8 +14,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     private String anvandareID;
 
 
-    
-
+  
 
     /**
      * Creates new form HandläggarMeny
@@ -273,7 +272,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSökHandläggareActionPerformed
 
     private void btnSökProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökProjektActionPerformed
-        new SökProjekt (idb).setVisible(true);
+        new SökProjekt (idb,anvandareID).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSökProjektActionPerformed
 
