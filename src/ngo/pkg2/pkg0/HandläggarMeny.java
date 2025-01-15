@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo.pkg2.pkg0;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -282,8 +283,24 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_lblKollegorActionPerformed
 
     private void btnInfoOmProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoOmProjektActionPerformed
-        new Kontroll (idb, anvandareID).setVisible(true);
-        this.setVisible(false);
+        try{
+            String sql = "SELECT projektchef FROM projekt WHERE projektchef = '" + anvandareID + "'";
+        String resultat = idb.fetchSingle(sql);
+
+            // Kontrollera om användaren finns i projektchef-kolumnen
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte en projektchef och får inte fortsätta.", "Åtkomst nekad", JOptionPane.ERROR_MESSAGE);
+            } else {
+                // Om användaren är en projektchef, fortsätt
+                JOptionPane.showMessageDialog(this, "Validering godkänd! Du är en projektchef.", "Åtkomst beviljad", JOptionPane.INFORMATION_MESSAGE);
+            
+            new infoOmProjekt (idb,anvandareID).setVisible(true);
+            this.setVisible(false);
+            }
+        }catch (Exception ex) {
+        // Visa felmeddelande om något går fel
+        JOptionPane.showMessageDialog(this, "Fel vid tillägg av anställd: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }   
     }//GEN-LAST:event_btnInfoOmProjektActionPerformed
 
     /**
