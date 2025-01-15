@@ -8,6 +8,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.*;
 import java.util.List;
+import ngo.pkg2.pkg0.Validering;
 
 /**
  *
@@ -16,14 +17,19 @@ import java.util.List;
 public class ÄndraHandläggare extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private String projektId;
+    private Validering validering;
 
     /**
      * Creates new form ÄndraHandläggare
      */
-    public ÄndraHandläggare(InfDB idb, String anvandareID) {
-        initComponents();
-        this.idb = idb;
-        this.anvandareID=anvandareID;
+public ÄndraHandläggare(InfDB idb, String anvandareID,  String projektId) {
+        
+    this.idb = idb;
+    this.anvandareID=anvandareID;
+    this.projektId = projektId;
+    validering = new Validering(idb);     
+    initComponents();
     }
 
     /**
@@ -176,90 +182,87 @@ public class ÄndraHandläggare extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Denna metod hämtar alla projekt-ID för projekt som den inloggade användaren är projektchef för.
-    private List<String> hamtaProjektForAnvandare(String anvandareID) {
-    List<String> projektList = new ArrayList<>();
-    try {
-        // SQL-fråga för att hämta alla projekt där den inloggade användaren är projektchef
-        String query = "SELECT pid FROM projekt WHERE projektchef = '" + anvandareID + "'";
-        
-        // Hämta kolumnen med alla projekt-ID:n från resultatet
-        List<String> resultat = idb.fetchColumn(query);
-
-        // Om vi får resultat, lägg till varje pid i listan
-        if (resultat != null) {
-            projektList = resultat;
-        }
-    } catch (InfException e) {
-        JOptionPane.showMessageDialog(null, "Fel vid hämtning av projekt: " + e.getMessage());
-    }
-    return projektList;
-}
+    
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
 
-    String handlaggareID = txtaid.getText().trim();  // Hämtar handläggarens ID från textfältet
-    String anvandareID = "användarens ID"; // ID för den inloggade användaren (projektansvarig)
-
-    // Hämta alla projekt som den inloggade användaren är ansvarig för
-    List<String> projektList = hamtaProjektForAnvandare(anvandareID);
-
-    if (projektList.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Du är inte ansvarig för något projekt.");
-        return;
-    }
-
-    // Iterera över projekten och lägg till handläggaren till varje projekt
-    for (String pid : projektList) {
         try {
-            // Kontrollera om handläggaren redan är kopplad till projektet
-            String kontrollHandlaggare = "SELECT COUNT(*) FROM anst_proj WHERE projekt_id = '" + pid + "' AND handlaggare_id = '" + handlaggareID + "'";
-            String handlaggareResult = idb.fetchSingle(kontrollHandlaggare);
+        String aid = txtaid.getText();
+        String fornamn = txtFornamn.getText();
+        String efternamn = txtEfternamn.getText();
+        String Adress = txtAdress.getText();
+        String epost = txtEpost.getText();
+        String telefon = txtTelefon.getText();
+        String anstallningsdatum = txtDatum.getText();
+        String Lösen = txtLosenord.getText();
+        String Avdelning = txtAvdelning.getText();
 
-            if (Integer.parseInt(handlaggareResult) == 0) {
-                // Handläggaren är inte kopplad till projektet, lägg till handläggaren
-                String query = "INSERT INTO anst_proj (projekt_id, handlaggare_id) VALUES ('" + pid + "', '" + handlaggareID + "')";
-                idb.insert(query);
-                JOptionPane.showMessageDialog(null, "Handläggare tillagd till projektet med ID: " + pid);
-            } else {
-                JOptionPane.showMessageDialog(null, "Handläggaren är redan kopplad till projektet med ID: " + pid);
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel uppstod vid tillägg: " + e.getMessage());
+        // Kontrollera om alla obligatoriska fält är ifyllda
+        if (aid.isEmpty() || fornamn.isEmpty() || efternamn.isEmpty() || Adress.isEmpty() || Lösen.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }
+
+        // Validera e-postformat
+        if (!validering.arRattEpost(epost)) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validera telefonnummer
+        if (!validering.arRattTelefonnummer(telefon)) {
+            return;
+        }
+        
+        // Lägg till partner i partner-tabellen
+        String sql = "INSERT INTO anstalld (aid, Fornamn, Efternamn, Adress, Epost, Telefon, Anstallningsdatum, Losenord, Avdelning) " +
+                "VALUES ('" + aid + "','" + fornamn + "', '" + efternamn + "', '" + Adress + "', '" + epost + "', '" + telefon + "',"
+                + " '" + anstallningsdatum + "', '" + Lösen + "', '" + Avdelning + "')";
+        idb.insert(sql);
+
+        // Lägg till partner i ans_proj tabellen med det specifika projektID
+        String ans_proj = "INSERT INTO ans_proj (pid, aid) " +
+                                   "VALUES ('" + projektId + "', '" + aid + "')";
+        idb.insert(ans_proj);
+
+        JOptionPane.showMessageDialog(this, "Ny Handläggare lades till!");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Fel vid tillägg av Handläggare: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }                   
     }//GEN-LAST:event_btnLäggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
 
-    String handlaggareID = txtaid.getText().trim();  // Hämtar handläggarens ID från textfältet
-    String anvandareID = "användarens ID"; // ID för den inloggade användaren (projektansvarig)
+         try {
+        // Hämta ID från textfältet
+        String aid = txtaid.getText();
 
-    // Hämta alla projekt som den inloggade användaren är ansvarig för
-    List<String> projektList = hamtaProjektForAnvandare(anvandareID);
-
-    if (projektList.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Du är inte ansvarig för något projekt.");
-        return;
-    }
-
-    // Iterera över projekten och ta bort handläggaren från varje projekt
-    for (String pid : projektList) {
-        try {
-            // Kontrollera om handläggaren är kopplad till projektet
-            String kontrollHandlaggare = "SELECT COUNT(*) FROM anst_proj WHERE projekt_id = '" + pid + "' AND handlaggare_id = '" + handlaggareID + "'";
-            String handlaggareResult = idb.fetchSingle(kontrollHandlaggare);
-
-            if (Integer.parseInt(handlaggareResult) > 0) {
-                // Handläggaren är kopplad till projektet, ta bort handläggaren
-                String deleteQuery = "DELETE FROM anst_proj WHERE projekt_id = '" + pid + "' AND handlaggare_id = '" + handlaggareID + "'";
-                idb.delete(deleteQuery);
-                JOptionPane.showMessageDialog(null, "Handläggare borttagen från projektet med ID: " + pid);
-            } else {
-                JOptionPane.showMessageDialog(null, "Handläggaren är inte kopplad till projektet med ID: " + pid);
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel uppstod vid borttagning: " + e.getMessage());
+        // Kontrollera att ID inte är tomt
+        if (aid.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vänligen ange ett giltigt ID.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+
+        // Kontrollera om ID:t existerar i databasen
+        String Kontroll = "SELECT COUNT(*) FROM anstalld WHERE aid = '" + aid + "'";
+        String result = idb.fetchSingle(Kontroll);
+
+        if (result == null || Integer.parseInt(result) == 0) {
+            JOptionPane.showMessageDialog(this, "Ingen Handläggare hittades med angivet ID.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Skapa SQL-fråga för att ta bort anställd
+        String deleteQuery = "DELETE FROM anstalld WHERE aid = '" + aid + "'";
+        System.out.println("SQL Query: " + deleteQuery); // Kontrollera frågan
+
+        // Kör borttagningsfrågan
+        idb.delete(deleteQuery);
+
+        JOptionPane.showMessageDialog(this, "Handläggare borttagen från systemet!");
+
+    } catch (Exception ex) {
+        // Visa felmeddelande om något går fel
+        JOptionPane.showMessageDialog(this, "Fel vid borttagning av Handläggare: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
