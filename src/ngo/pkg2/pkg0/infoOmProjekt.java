@@ -166,7 +166,7 @@ public class infoOmProjekt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnÄndraPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraPartnersActionPerformed
-        new ÄndraPartnersProjektChef (idb, anvandareID).setVisible (true);
+        new VäljProjekt(idb, anvandareID).setVisible (true);
         this.setVisible(false);
     }//GEN-LAST:event_btnÄndraPartnersActionPerformed
 

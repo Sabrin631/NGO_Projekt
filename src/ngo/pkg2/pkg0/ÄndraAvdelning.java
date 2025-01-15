@@ -135,60 +135,60 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
 
         lblNamn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblNamn.setText("Namn");
-        jPanel1.add(lblNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+        jPanel1.add(lblNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
         txtavdID.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtavdID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 391, -1));
+        jPanel1.add(txtavdID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 391, -1));
 
         lblavdid.setBackground(new java.awt.Color(255, 255, 255));
         lblavdid.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblavdid.setText("AVD-ID");
-        jPanel1.add(lblavdid, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanel1.add(lblavdid, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         lblBeskrivning.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblBeskrivning.setText("Beskrivning");
-        jPanel1.add(lblBeskrivning, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jPanel1.add(lblBeskrivning, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
 
         lblEpost.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblEpost.setText("Epost");
-        jPanel1.add(lblEpost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+        jPanel1.add(lblEpost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
         lblAdress.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblAdress.setText("Adress");
-        jPanel1.add(lblAdress, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+        jPanel1.add(lblAdress, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         lblStad.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblStad.setText("Stad");
-        jPanel1.add(lblStad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
+        jPanel1.add(lblStad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
 
         lblChef.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblChef.setText("Chef");
-        jPanel1.add(lblChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
+        jPanel1.add(lblChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
 
         lblTelefon.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTelefon.setText("Telefon");
-        jPanel1.add(lblTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
+        jPanel1.add(lblTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
         txtEpost.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtEpost, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 391, -1));
+        jPanel1.add(txtEpost, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 391, -1));
 
         txtAdress.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtAdress, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 391, -1));
+        jPanel1.add(txtAdress, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 391, -1));
 
         txtBeskrivning.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtBeskrivning, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 391, -1));
+        jPanel1.add(txtBeskrivning, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 391, -1));
 
         txtNamn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 391, -1));
+        jPanel1.add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 391, -1));
 
         txtChef.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 480, 391, -1));
+        jPanel1.add(txtChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 391, -1));
 
         txtStad.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtStad, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 391, -1));
+        jPanel1.add(txtStad, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 391, -1));
 
         txtTelefon.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jPanel1.add(txtTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 391, -1));
+        jPanel1.add(txtTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 391, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));

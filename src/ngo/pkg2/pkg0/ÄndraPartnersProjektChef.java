@@ -17,14 +17,16 @@ import java.util.List;
 public class ÄndraPartnersProjektChef extends javax.swing.JFrame {
     private InfDB idb;
     private String anvandareID;
+    private String projektId;
 
     /**
      * Creates new form ÄndraPartnersProjektChef
      */
-    public ÄndraPartnersProjektChef(InfDB idb, String anvandareID) {
-        initComponents();
+    public ÄndraPartnersProjektChef(InfDB idb, String anvandareID, String projektId) {
         this.idb = idb;
         this.anvandareID=anvandareID;
+        this.projektId = projektId;
+         initComponents();
     }
 
     /**
@@ -169,85 +171,72 @@ public class ÄndraPartnersProjektChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
-       try {
-    String pid = txtPid.getText();
-    String namn = txtNamn.getText();
-    String kontaktPerson = txtKontaktPerson.getText();
-    String kontaktEpost = txtKontaktEpost.getText();
-    String telefon = txtTelefon.getText();
-    String Adress = txtAdress.getText();
-    String Branch = txtBranch.getText();
-    String Stad = txtStad.getText();
+      try {
+        String pid = txtPid.getText();
+        String namn = txtNamn.getText();
+        String kontaktPerson = txtKontaktPerson.getText();
+        String kontaktEpost = txtKontaktEpost.getText();
+        String telefon = txtTelefon.getText();
+        String Adress = txtAdress.getText();
+        String Branch = txtBranch.getText();
+        String Stad = txtStad.getText();
 
-    // Kontrollera om alla obligatoriska fält är ifyllda
-    if (pid.isEmpty() || namn.isEmpty() || Adress.isEmpty() || telefon.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        // Kontrollera om alla obligatoriska fält är ifyllda
+        if (pid.isEmpty() || namn.isEmpty() || Adress.isEmpty() || telefon.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Kontrollera om användaren är projektansvarig för ett projekt där partnern ska läggas till
-    String kontrollProjekt = "SELECT COUNT(*) FROM projekt_partner " +
-                             "JOIN projekt ON projekt_partner.pid = projekt.pid " +
-                             "WHERE projekt_partner.pid = '" + pid + "' AND projekt.projektchef = '" + anvandareID + "'";
-
-    String projektResult = idb.fetchSingle(kontrollProjekt);
-
-    if (projektResult != null && Integer.parseInt(projektResult) > 0) {
-        // Om användaren är projektansvarig för projektet, lägg till partnern
+        // Lägg till partner i partner-tabellen
         String sql = "INSERT INTO partner (pid, namn, kontaktperson, kontaktepost, telefon, adress, branch, stad) " +
                      "VALUES ('" + pid + "', '" + namn + "', '" + kontaktPerson + "', '" + kontaktEpost + "', '" + telefon + "', '" +
                      Adress + "', '" + Branch + "', '" + Stad + "')";
         idb.insert(sql);
 
-        // Lägg till partner till projekt_partner-tabellen
-        String sqlProjektPartner = "INSERT INTO projekt_partner (projekt_pid, partner_pid) " +
-                                   "VALUES ((SELECT pid FROM projekt WHERE projektchef = '" + anvandareID + "'), '" + pid + "')";
+        // Lägg till partner i projekt_partner-tabellen med det specifika projektID
+        String sqlProjektPartner = "INSERT INTO projekt_partner (pid, partner_pid) " +
+                                   "VALUES ('" + projektId + "', '" + pid + "')";
         idb.insert(sqlProjektPartner);
 
         JOptionPane.showMessageDialog(this, "Ny Partner lades till!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Du är inte projektansvarig för det här projektet!", "Fel", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Fel vid tillägg av partner: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
     }
-
-} catch (Exception ex) {
-    JOptionPane.showMessageDialog(this, "Fel vid tillägg av partner: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
-}
-
     }//GEN-LAST:event_btnLäggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
-        // TODO add your handling code here:
-        try {
-    String pid = txtPid.getText(); // Projekt-ID som ska tas bort
-    
-    // Kontrollera om användaren är projektansvarig för detta projekt
-    String kontrollProjekt = "SELECT COUNT(*) FROM projekt WHERE pid = '" + pid + "' AND projektchef = '" + anvandareID + "'";
-    String projektResult = idb.fetchSingle(kontrollProjekt);
+       try {
+        // Hämta ID från textfältet
+        String pid = txtPid.getText();
 
-    if (projektResult != null && Integer.parseInt(projektResult) > 0) {
-        // Bekräfta borttagning
-        int option = JOptionPane.showConfirmDialog(this, "Vill du verkligen ta bort detta projekt?", "Bekräfta borttagning", JOptionPane.YES_NO_OPTION);
-        
-        if (option == JOptionPane.YES_OPTION) {
-            // Ta bort från projekt_partner-tabellen för detta projekt
-            String sqlProjektPartner = "DELETE FROM projekt_partner WHERE projekt_pid = '" + pid + "'";
-            idb.insert(sqlProjektPartner);
-            
-            // Ta bort projektet från projekt-tabellen
-            String sqlProjekt = "DELETE FROM projekt WHERE pid = '" + pid + "'";
-            idb.insert(sqlProjekt);
-            
-            JOptionPane.showMessageDialog(this, "Projektet har tagits bort!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Borttagning avbröts.");
+        // Kontrollera att ID inte är tomt
+        if (pid.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vänligen ange ett giltigt pid.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Du är inte projektansvarig för detta projekt!", "Fel", JOptionPane.ERROR_MESSAGE);
-    }
-} catch (Exception ex) {
-    JOptionPane.showMessageDialog(this, "Fel vid borttagning av projekt: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
-}
 
+        // Kontrollera om ID:t existerar i databasen
+        String kontroll = "SELECT COUNT(*) FROM partner WHERE pid = '" + pid + "'";
+        String resultat = idb.fetchSingle(kontroll);
+
+        if (resultat == null || Integer.parseInt(resultat) == 0) {
+            JOptionPane.showMessageDialog(this, "Ingen partner hittades med angivet pid.", "Fel", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Skapa SQL-fråga för att ta bort anställd
+        String deleteQuery = "DELETE FROM partner WHERE pid = '" + pid + "'";
+        System.out.println("SQL Query: " + deleteQuery); // Kontrollera frågan
+
+        // Kör borttagningsfrågan
+        idb.delete(deleteQuery);
+
+        JOptionPane.showMessageDialog(this, "Partnern är borttagen från systemet!");
+
+    } catch (Exception ex) {
+        // Visa felmeddelande om något går fel
+        JOptionPane.showMessageDialog(this, "Fel vid borttagning av Partner: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void lblExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblExitActionPerformed
