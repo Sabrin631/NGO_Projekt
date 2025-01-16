@@ -299,7 +299,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         }catch (Exception ex) {
         // Visa felmeddelande om något går fel
-        JOptionPane.showMessageDialog(this, "Fel vid tillägg av anställd: " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Fel vid validering av projektChef " + ex.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
     }   
     }//GEN-LAST:event_btnInfoOmProjektActionPerformed
 
