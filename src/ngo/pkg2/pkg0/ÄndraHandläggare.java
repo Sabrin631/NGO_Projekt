@@ -252,7 +252,7 @@ public ÄndraHandläggare(InfDB idb, String anvandareID,  String projektId) {
         }
 
         // Skapa SQL-fråga för att ta bort anställd
-        String deleteQuery = "DELETE FROM anstalld WHERE aid = '" + aid + "'";
+        String deleteQuery = "DELETE FROM ans_proj WHERE aid = '" + aid + "'";
         System.out.println("SQL Query: " + deleteQuery); // Kontrollera frågan
 
         // Kör borttagningsfrågan

@@ -35,7 +35,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnLoggain" min="-2" pref="93" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="lblFelmeddelande" pref="330" max="32767" attributes="0"/>
+                              <Component id="lblFelmeddelande" pref="253" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -84,7 +84,7 @@
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="btnGlomtLosenord" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

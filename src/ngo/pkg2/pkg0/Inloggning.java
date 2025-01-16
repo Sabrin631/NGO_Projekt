@@ -104,7 +104,7 @@ public class Inloggning extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnLoggain, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
-                                .addComponent(lblFelmeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+                                .addComponent(lblFelmeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnGlomtLosenord)
@@ -139,7 +139,7 @@ public class Inloggning extends javax.swing.JFrame {
                     .addComponent(lblFelmeddelande))
                 .addGap(38, 38, 38)
                 .addComponent(btnGlomtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
